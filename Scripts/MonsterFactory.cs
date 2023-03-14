@@ -17,7 +17,11 @@ public GameObject Create(string type)
                 var fast = Resources.Load("Prefabs/FastMonster") as GameObject;
                 monster = Instantiate(fast);
                 return monster;
-                default:
+            case "tank":
+                var tank = Resources.Load("Prefabs/TankMonster") as GameObject;
+                monster = Instantiate(tank);
+                return monster;
+            default:
                 return null;
 
         }
