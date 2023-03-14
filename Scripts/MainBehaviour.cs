@@ -93,6 +93,8 @@ public class MainBehaviour : MonoBehaviour
             enemy.transform.position = getRandomPoint();
             GameObject fast = monsterFactory.Create("fast");
             fast.transform.position = getRandomPoint();
+            GameObject tank = monsterFactory.Create("tank");
+            tank.transform.position = getRandomPoint();
 
             timer.Duration = duration;
             timer.Run();
