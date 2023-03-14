@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 2453443297200318970}
   - component: {fileID: 1861478474373451736}
   - component: {fileID: 6166306577470594855}
-  - component: {fileID: -6855860793909190195}
   - component: {fileID: -5005302073324314867}
+  - component: {fileID: -4132432875478502094}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Luciano
   m_TagString: MC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -108,22 +108,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-6855860793909190195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1873988263482176039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b10b00b98b361b4a9ba33c23cda4a02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1876171597113210311, guid: 21dd30d256dd2ef4a957cec64f460dc4, type: 3}
-  speed: 6.7
-  health: 30
-  roateSpeed: 540
 --- !u!61 &-5005302073324314867
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -150,3 +134,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-4132432875478502094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873988263482176039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7fb466457ca22c428e0d30a0a485d3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  health: 30
+  rotateSpeed: 630
