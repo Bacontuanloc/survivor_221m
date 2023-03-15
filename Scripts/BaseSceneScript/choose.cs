@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class menu : MonoBehaviour
+public class choose : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -16,8 +16,8 @@ public class menu : MonoBehaviour
         
     }
 
-    public void loadLevel1()
+    public void ChoosePlayer()
     {
-        Application.LoadLevel("ChoosePlayer");
+        Application.LoadLevel("Level1");
     }
 }
