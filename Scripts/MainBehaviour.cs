@@ -22,7 +22,7 @@ public class MainBehaviour : MonoBehaviour
 
     public WeaponFactory weaponFactory;
 
-    public string pickedCharacter;
+    public static string pickedCharacter;
 
     private Timer timer;
 
