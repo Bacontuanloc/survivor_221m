@@ -18,6 +18,7 @@ public class choose : MonoBehaviour
 
     public void ChoosePlayer()
     {
-        Application.LoadLevel("Level1");
+        MainBehaviour.pickedCharacter = gameObject.name;
+        Application.LoadLevel("SampleScene");     
     }
 }
