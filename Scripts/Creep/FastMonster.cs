@@ -26,6 +26,23 @@ public class FastMonster : Creep
         gameObject.transform.position = Vector3.MoveTowards(transform.position, mc.transform.position, speed * Time.deltaTime);
 
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            if (health < 0)
+            {
+                Destroy(gameObject);
+            }
+            health = health - 10;
+
+        }
+        if (collision.gameObject.CompareTag("MC"))
+        {
+            Destroy(gameObject);
+        }
+
+    }
 
 
 }
