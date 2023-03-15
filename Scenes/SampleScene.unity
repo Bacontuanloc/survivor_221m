@@ -224,8 +224,9 @@ MonoBehaviour:
   duration: 5
   enemyPrefab: {fileID: 2864953563765644657, guid: 9f63f644418c52d4093e45166ed169be, type: 3}
   gunPrefab: {fileID: 6874577507165959930, guid: c375bbc9c4f2b6d4d951c46a0dbcf2f3, type: 3}
-  playerPrefab: {fileID: 1873988263482176039, guid: b5644747305645242a8598983a439175, type: 3}
   monsterFactory: {fileID: 0}
+  characterFactory: {fileID: 0}
+  pickedCharacter: geran
 --- !u!114 &519420035
 MonoBehaviour:
   m_ObjectHideFlags: 0

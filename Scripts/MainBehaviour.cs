@@ -1,3 +1,5 @@
+using Assets.Scripts.Char;
+using Assets.Scripts.Weapons.Factory;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -14,9 +16,13 @@ public class MainBehaviour : MonoBehaviour
 
     public GameObject gunPrefab;
 
-    public GameObject playerPrefab;
-
     public MonsterFactory monsterFactory;
+
+    public CharacterFactory characterFactory;
+
+    public WeaponFactory weaponFactory;
+
+    public string pickedCharacter;
 
     private Timer timer;
 
@@ -47,19 +53,22 @@ public class MainBehaviour : MonoBehaviour
     void Start()
     {
         monsterFactory= gameObject.AddComponent<MonsterFactory>();
-        GameObject player = Instantiate(playerPrefab);
+        characterFactory = gameObject.AddComponent<CharacterFactory>();
+
+        //GameObject character = characterFactory.CreateLuciano();
+        GameObject character = characterFactory.Create(pickedCharacter);
         GameObject gun = Instantiate(gunPrefab);
 
-        Renderer renderer = player.GetComponent<Renderer>();
+        Renderer renderer = character.GetComponent<Renderer>();
         Vector3 size = renderer.bounds.size;
         Vector3 localTopRight = new Vector3(size.x / 2, size.y / 2, 0);
-        Vector3 worldTopRight = player.transform.TransformPoint(localTopRight);
+        Vector3 worldTopRight = character.transform.TransformPoint(localTopRight);
         Vector3 localTopLeft = new Vector3(-size.x / 2, size.y / 2, 0);
-        Vector3 worldTopLeft = player.transform.TransformPoint(localTopLeft);
+        Vector3 worldTopLeft = character.transform.TransformPoint(localTopLeft);
 
         gun.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0);
         gun.transform.position = (worldTopLeft + worldTopRight) / 2;
-        gun.transform.parent = player.transform;
+        gun.transform.parent = character.transform;
         timer = gameObject.AddComponent<Timer>();
         timer.Duration = duration;
         timer.Run();
