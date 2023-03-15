@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c01253c4bd56e84b804cbcd58828558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 2
+  duration: 5
   enemyPrefab: {fileID: 2864953563765644657, guid: 9f63f644418c52d4093e45166ed169be, type: 3}
   gunPrefab: {fileID: 6874577507165959930, guid: c375bbc9c4f2b6d4d951c46a0dbcf2f3, type: 3}
   monsterFactory: {fileID: 0}
