@@ -1,4 +1,5 @@
 using Assets.Scripts.Char;
+using Assets.Scripts.Weapons.Factory;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -18,6 +19,10 @@ public class MainBehaviour : MonoBehaviour
     public MonsterFactory monsterFactory;
 
     public CharacterFactory characterFactory;
+
+    public WeaponFactory weaponFactory;
+
+    public string pickedCharacter;
 
     private Timer timer;
 
@@ -50,7 +55,8 @@ public class MainBehaviour : MonoBehaviour
         monsterFactory= gameObject.AddComponent<MonsterFactory>();
         characterFactory = gameObject.AddComponent<CharacterFactory>();
 
-        GameObject character = characterFactory.CreateLuciano();
+        //GameObject character = characterFactory.CreateLuciano();
+        GameObject character = characterFactory.Create(pickedCharacter);
         GameObject gun = Instantiate(gunPrefab);
 
         Renderer renderer = character.GetComponent<Renderer>();
