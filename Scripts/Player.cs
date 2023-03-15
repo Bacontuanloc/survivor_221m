@@ -36,8 +36,9 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Creep monster = collision.gameObject.GetComponent<Monster>();
-            //health -= monster.damage;
+            Monster monster = collision.gameObject.GetComponent<Monster>();
+            health -= monster.damage;
+            Debug.Log(health);
             ChangeState(new OnHitState(this));
         }
     }

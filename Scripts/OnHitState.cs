@@ -12,7 +12,7 @@ namespace Assets.Scripts
     public class OnHitState : PlayerState
     {
         private float elapsedTime = 0f;
-        private float duration = 1f;
+        private float duration = 0.2f;
         public OnHitState(Player player) : base(player) { }
 
         public override void EnterState(Player player)
