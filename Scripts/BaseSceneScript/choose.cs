@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class choose : MonoBehaviour
 {
@@ -19,6 +20,6 @@ public class choose : MonoBehaviour
     public void ChoosePlayer()
     {
         MainBehaviour.pickedCharacter = gameObject.name;
-        Application.LoadLevel("SampleScene");     
+        SceneManager.LoadScene("SampleScene");     
     }
 }

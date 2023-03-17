@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class continue1 : MonoBehaviour
@@ -19,6 +20,6 @@ public class continue1 : MonoBehaviour
 
     public void Continue()
     {
-        Application.LoadLevel("Level1");
+        SceneManager.LoadScene("SampleScene");
     }
 }
