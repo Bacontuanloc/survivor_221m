@@ -9,21 +9,21 @@ namespace Assets.Scripts.WeaponManagement
 {
     public class WeaponFactory : MonoBehaviour
     {
-        public GameObject InstantiateWeapon(WeaponType weaponType)
+        public GameObject InstantiateWeapon(string character)
         {
             GameObject weapon;
-            switch (weaponType)
+            switch (character)
             {
-                case WeaponType.Pistol:
-                    var pistol = Resources.Load("Prefabs/Gun") as GameObject;
+                case "luciano":
+                    var pistol = Resources.Load("Prefabs/Pistol") as GameObject;
                     weapon = Instantiate(pistol);
                     return weapon;
-                case WeaponType.Kunai:
-                    var kunai = Resources.Load("Prefabs/Gun") as GameObject;
+                case "tomee":
+                    var kunai = Resources.Load("Prefabs/Kunai") as GameObject;
                     weapon = Instantiate(kunai);
                     return weapon;
-                case WeaponType.Bat:
-                    var bat = Resources.Load("Prefabs/Gun") as GameObject;
+                case "geran":
+                    var bat = Resources.Load("Prefabs/Bat") as GameObject;
                     weapon = Instantiate(bat);
                     return weapon;
                 default:
