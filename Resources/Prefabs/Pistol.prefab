@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5377063298440672923}
   - component: {fileID: 4918956824860237179}
   - component: {fileID: -8548895823334489361}
+  - component: {fileID: -5644858947713308131}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -93,7 +94,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6874577507165959930}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10e0c3e5658aaf64a913d5574371e50c, type: 3}
   m_Name: 
@@ -116,4 +117,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolBullet: []
   bulletPrefab: {fileID: 1876171597113210311, guid: 21dd30d256dd2ef4a957cec64f460dc4, type: 3}
-  amountEnemy: 20
+  poolSize: 0
+--- !u!114 &-5644858947713308131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6874577507165959930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1434727560c0552479ab75f2e6b19901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 1876171597113210311, guid: 21dd30d256dd2ef4a957cec64f460dc4, type: 3}
+  bulletSpeed: 10
+  fireRate: 1
+  damage: 30

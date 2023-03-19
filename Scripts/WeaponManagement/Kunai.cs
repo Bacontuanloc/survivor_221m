@@ -12,7 +12,17 @@ namespace Assets.Scripts.WeaponManagement
         public GameObject bulletPrefab;
         public float bulletSpeed = 10f;
         public float fireRate = 0.5f;
-        public float damage = 5f;
+        public float damage = 20f;
+        void Start()
+        {
+            InvokeRepeating("Shoot", 0f, fireRate);
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
         public void Shoot()
         {
             Renderer renderer = gameObject.GetComponent<Renderer>();
