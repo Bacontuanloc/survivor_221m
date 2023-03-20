@@ -62,7 +62,7 @@ public class Monster : Creep
             ChangeState(new CreepOnHitState(this));
             
         }
-        if (collision.gameObject.CompareTag("MC"))
+        if (collision.gameObject.CompareTag("Bullet"))
         {
            Destroy(gameObject);
         }
