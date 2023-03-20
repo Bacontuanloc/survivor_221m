@@ -1,5 +1,5 @@
 using Assets.Scripts.Char;
-using Assets.Scripts.Weapons.Factory;
+using Assets.Scripts.WeaponManagement;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -21,6 +21,8 @@ public class MainBehaviour : MonoBehaviour
     public CharacterFactory characterFactory;
 
     public WeaponFactory weaponFactory;
+
+    public WeaponType weaponType;
 
     public static string pickedCharacter;
 
@@ -54,10 +56,12 @@ public class MainBehaviour : MonoBehaviour
     {
         monsterFactory= gameObject.AddComponent<MonsterFactory>();
         characterFactory = gameObject.AddComponent<CharacterFactory>();
+        weaponFactory = gameObject.AddComponent<WeaponFactory>();
 
         //GameObject character = characterFactory.CreateLuciano();
         GameObject character = characterFactory.Create(pickedCharacter);
-        GameObject gun = Instantiate(gunPrefab);
+        //GameObject weapon = Instantiate(gunPrefab);
+        GameObject weapon = weaponFactory.InstantiateWeapon(pickedCharacter);
 
         Renderer renderer = character.GetComponent<Renderer>();
         Vector3 size = renderer.bounds.size;
@@ -66,9 +70,9 @@ public class MainBehaviour : MonoBehaviour
         Vector3 localTopLeft = new Vector3(-size.x / 2, size.y / 2, 0);
         Vector3 worldTopLeft = character.transform.TransformPoint(localTopLeft);
 
-        gun.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0);
-        gun.transform.position = (worldTopLeft + worldTopRight) / 2;
-        gun.transform.parent = character.transform;
+        weapon.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0);
+        weapon.transform.position = (worldTopLeft + worldTopRight) / 2;
+        weapon.transform.parent = character.transform;
         timer = gameObject.AddComponent<Timer>();
         timer.Duration = duration;
         timer.Run();
