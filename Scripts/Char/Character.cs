@@ -5,13 +5,17 @@ using UnityEngine;
 public abstract class Character : MonoBehaviour
 {
     public float speed;
-    public float health;
+    public int health;
     public float rotateSpeed;
 
     public abstract void Move();
     public abstract void OnCollisionEnter2D(Collision2D collision);
     public abstract void ChangeState(CharacterState newState);
-    public abstract void TakeDamage(int damageAmount);
+    public abstract void TakeDamage();
+    
 
     // Any other common functionality goes here
+
+    
+   
 }

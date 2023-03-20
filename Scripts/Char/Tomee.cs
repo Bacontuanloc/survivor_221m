@@ -12,7 +12,7 @@ namespace Assets.Scripts.Char
         private CharacterState currentState;
         public Tomee() {
             speed = 10f;
-            health = 20f;
+            health = 20;
             rotateSpeed = 8000f;
         }
         private void Start()
@@ -62,7 +62,7 @@ namespace Assets.Scripts.Char
             }
         }
 
-        public override void TakeDamage(int damageAmount)
+        public override void TakeDamage()
         {
             throw new NotImplementedException();
         }

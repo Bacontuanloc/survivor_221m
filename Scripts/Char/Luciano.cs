@@ -13,7 +13,7 @@ namespace Assets.Scripts.Char
         public Luciano()
         {
             speed = 5f;
-            health = 30f;
+            health = 30;
             rotateSpeed = 630f;
         }
 
@@ -64,7 +64,7 @@ namespace Assets.Scripts.Char
             }
         }
 
-        public override void TakeDamage(int damageAmount)
+        public override void TakeDamage()
         {
             throw new NotImplementedException();
         }
