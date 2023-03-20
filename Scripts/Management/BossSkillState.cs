@@ -73,7 +73,7 @@ namespace Assets.Scripts.Management
                     {
                         if (hit.CompareTag("MC"))
                         {
-                            Player player = hit.gameObject.GetComponent<Player>();
+                            Character player = hit.gameObject.GetComponent<Character>();
                             player.health -= damage;
                             break;
                         }

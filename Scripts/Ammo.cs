@@ -36,7 +36,7 @@ public class Ammo : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("MC"))
         {
-            Player player = collision.gameObject.GetComponent<Player>();
+            Character player = collision.gameObject.GetComponent<Character>();
             if (player != null)
             {
                 //player.health -= damage;
