@@ -8,6 +8,7 @@ using UnityEngine.Pool;
 public class Monster : Creep
 {
     private CreepState currentState;
+    public float current_healt;
     public float speed;
     public float health;
     public float damage;
@@ -77,5 +78,10 @@ public class Monster : Creep
 
         currentState = newState;
         currentState.EnterState(this);
+    }
+
+    public override void TakeDamage(int damageAmount)
+    {
+        throw new NotImplementedException();
     }
 }

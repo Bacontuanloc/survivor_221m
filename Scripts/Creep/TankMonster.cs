@@ -7,6 +7,7 @@ using UnityEngine;
 public class TankMonster : Creep
 {
     private CreepState currentState;
+    public float current_healt;
     public float speed;
     public float health;
     public float damage;
@@ -60,5 +61,15 @@ public class TankMonster : Creep
 
         currentState = newState;
         currentState.EnterState(this);
+    }
+
+    public override void TakeDamage(int damageAmount)
+    {
+        current_healt = current_healt - damageAmount;
+        if (current_healt < 0)
+        {
+            Destroy(gameObject);
+        }
+
     }
 }

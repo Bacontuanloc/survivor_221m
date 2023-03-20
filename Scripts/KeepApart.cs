@@ -5,7 +5,7 @@ public class KeepApart : MonoBehaviour
     public float distanceThreshold = 2f;
     public float force = 1f;
 
-    private void FixedUpdate()
+     void Update()
     {
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Enemy");
         if (gameObjects.Length > 0)

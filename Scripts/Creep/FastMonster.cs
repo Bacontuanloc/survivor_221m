@@ -9,6 +9,7 @@ public class FastMonster : Creep
     private CreepState currentState;
     public float speed;
     public float health;
+    public float current_healt;
     public float damage;
     public FastMonster() { 
     }
@@ -64,5 +65,15 @@ public class FastMonster : Creep
 
         currentState = newState;
         currentState.EnterState(this);
+    }
+
+    public override void TakeDamage(int damageAmount)
+    {
+        current_healt = current_healt - damageAmount;
+        if (current_healt < 0)
+        {
+            Destroy(gameObject);
+        }
+
     }
 }
