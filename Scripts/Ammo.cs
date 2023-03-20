@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ammo : MonoBehaviour
 {
     private int damage = 5;
+    private Bounds screenBounds;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,5 +49,31 @@ public class Ammo : MonoBehaviour
             }
             this.gameObject.SetActive(false);
         }
+        screenBounds = OrthographicBounds(Camera.main);
+        Vector3 DownLeft = new Vector3(screenBounds.min.x, screenBounds.min.y, 0);
+        Vector3 UpLeft = new Vector3(screenBounds.min.x, screenBounds.max.y, 0);
+        Vector3 DownRight = new Vector3(screenBounds.max.x, screenBounds.min.y, 0);
+        Vector3 UpRight = new Vector3(screenBounds.max.x, screenBounds.max.y, 0);
+        if(this.transform.position.y<DownLeft.y||this.transform.position.x>DownRight.x
+            || this.transform.position.x < DownLeft.x || this.transform.position.y > UpRight.y)
+        {
+            this.gameObject.SetActive(false);
+        }
+
+    }
+    private Bounds OrthographicBounds(Camera camera)
+    {
+
+        float screenAspect = (float)Screen.width / (float)Screen.height;
+
+        float cameraHeight = camera.orthographicSize * 2;
+
+        Bounds bounds = new Bounds(
+
+            camera.transform.position,
+
+            new Vector3(cameraHeight * screenAspect, cameraHeight, 0));
+
+        return bounds;
     }
 }
