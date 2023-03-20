@@ -10,7 +10,6 @@ namespace Assets.Scripts.Char
     public class Geran : Character
     {
         private CharacterState currentState;
-        private MovementJoystick movementJoystick;
 
         public Geran() {
             speed = 5f;
