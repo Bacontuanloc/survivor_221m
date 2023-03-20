@@ -21,8 +21,9 @@ public class MainBehaviour : MonoBehaviour
     public CharacterFactory characterFactory;
 
     public WeaponFactory weaponFactory;
-
+    public GameObject BossPrefab;
     public static string pickedCharacter;
+    GameObject character;
 
     private Timer timer;
 
@@ -57,7 +58,7 @@ public class MainBehaviour : MonoBehaviour
         weaponFactory = gameObject.AddComponent<WeaponFactory>();
 
         //GameObject character = characterFactory.CreateLuciano();
-        GameObject character = characterFactory.Create(pickedCharacter);
+        character = characterFactory.Create(pickedCharacter);
         //GameObject weapon = Instantiate(gunPrefab);
         GameObject weapon = weaponFactory.InstantiateWeapon(pickedCharacter);
         Physics2D.IgnoreCollision(weapon.GetComponent<Collider2D>(), character.GetComponent<Collider2D>());
@@ -76,6 +77,7 @@ public class MainBehaviour : MonoBehaviour
         timer = gameObject.AddComponent<Timer>();
         timer.Duration = duration;
         timer.Run();
+        InvokeRepeating("SummonBoss", 0f, 120f);
     }
 
     // Update is called once per frame
@@ -112,5 +114,19 @@ public class MainBehaviour : MonoBehaviour
             timer.Duration = duration;
             timer.Run();
         }
+    }
+    void SummonBoss()
+    {
+        GameObject boss = Instantiate(BossPrefab);
+        Vector3 bossSpawnLocation = Vector3.zero;
+        bossSpawnLocation.x = character.transform.position.x;
+        bossSpawnLocation.y = character.transform.position.y;
+        boss.transform.position = bossSpawnLocation;
+        GameObject[] monster = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject m in monster)
+        {
+            Destroy(m);
+        }
+        
     }
 }
