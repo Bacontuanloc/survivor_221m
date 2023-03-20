@@ -10,15 +10,15 @@ public GameObject Create(string type)
         switch (type)
         {
             case "normal":
-                var normal= Resources.Load("Prefabs/Monsters/Monster") as GameObject;
+                var normal= Resources.Load("Prefabs/Monster") as GameObject;
                 monster= Instantiate(normal);
                 return monster;
             case "fast":
-                var fast = Resources.Load("Prefabs/Monsters/FastMonster") as GameObject;
+                var fast = Resources.Load("Prefabs/FastMonster") as GameObject;
                 monster = Instantiate(fast);
                 return monster;
             case "tank":
-                var tank = Resources.Load("Prefabs/Monsters/TankMonster") as GameObject;
+                var tank = Resources.Load("Prefabs/TankMonster") as GameObject;
                 monster = Instantiate(tank);
                 return monster;
             default:

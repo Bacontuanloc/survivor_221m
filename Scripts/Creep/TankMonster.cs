@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,8 +11,6 @@ public class TankMonster : Creep
     // Start is called before the first frame update
     void Start()
     {
-        health = (float)(health * Math.Pow(1.25, level));
-        damage = (float)(health * Math.Pow(1.25, level));
 
     }
 

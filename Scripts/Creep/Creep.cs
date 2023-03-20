@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Creep : MonoBehaviour {
+public abstract class Creep : MonoBehaviour { 
 
     // Start is called before the first frame update
-    public static int level=0;
 
 }
