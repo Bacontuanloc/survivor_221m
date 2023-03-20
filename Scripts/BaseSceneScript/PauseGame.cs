@@ -9,7 +9,7 @@ public class PauseGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        
     }
 
     // Update is called once per frame
@@ -21,7 +21,7 @@ public class PauseGame : MonoBehaviour
     public void StopGame()
     {
         Time.timeScale = 0;
-        pausePanel.SetActive(true);
+        pausePanel.SetActive(true);       
     }
 
     public void ContinueGame()
