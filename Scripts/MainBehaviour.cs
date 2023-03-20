@@ -102,14 +102,23 @@ public class MainBehaviour : MonoBehaviour
             //    enemy.transform.position = getRandomPoint();
             //}
             //GameObject enemy = Instantiate(enemyPrefab);
-            GameObject enemy = monsterFactory.Create("normal");
-            enemy.transform.position = getRandomPoint();
-            GameObject fast = monsterFactory.Create("fast");
-            fast.transform.position = getRandomPoint();
-            GameObject tank = monsterFactory.Create("tank");
-            tank.transform.position = getRandomPoint();
-
-            timer.Duration = duration;
+            int monster_total = 0;
+            while (monster_total <= 3)
+            {
+                GameObject enemy = monsterFactory.Create("normal");
+                enemy.transform.position = getRandomPoint();
+            }
+            while (monster_total <= 5)
+            {
+                GameObject fast = monsterFactory.Create("fast");
+                fast.transform.position = getRandomPoint();
+            }
+            while (monster_total <= 8)
+            {
+                GameObject tank = monsterFactory.Create("tank");
+                tank.transform.position = getRandomPoint();
+            }
+            timer.Duration = 5;
             timer.Run();
         }
     }
