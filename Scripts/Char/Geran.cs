@@ -30,7 +30,7 @@ namespace Assets.Scripts.Char
 
         public override void TakeDamage(int damageAmount)
         {
-            throw new NotImplementedException();
+            health = health -damageAmount;
         }
     }
 }
