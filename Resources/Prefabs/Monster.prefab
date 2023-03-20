@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6766496513501921554}
   - component: {fileID: 3505031201143691838}
-  - component: {fileID: 5956266368415962298}
   - component: {fileID: -7739214572859662798}
   - component: {fileID: -8549354945841216822}
-  - component: {fileID: 2362723667867584629}
+  - component: {fileID: 5956266368415962298}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Enemy

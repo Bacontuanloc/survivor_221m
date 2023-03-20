@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Char;
+using Assets.Scripts.Weapons;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
+using static UnityEditor.IMGUI.Controls.PrimitiveBoundsHandle;
 
 namespace Assets.Scripts.WeaponManagement
 {
@@ -14,6 +16,7 @@ namespace Assets.Scripts.WeaponManagement
     {
         private float rotZ;
         public float rotationSpeed;
+        public float damage;
         void Start()
         {
 
@@ -33,8 +36,33 @@ namespace Assets.Scripts.WeaponManagement
             if (collision.gameObject.CompareTag("Enemy"))
             {
                 Creep creep = collision.gameObject.GetComponent<Creep>();
-                //health -= monster.damage;
-                //changestate(new onhitstate());
+                if (creep is Monster)
+                {
+                    Monster monster = creep as Monster;
+                    monster.health = monster.health - damage;
+                    if (monster.health < 0)
+                    {
+                        Destroy(collision.gameObject);
+                    }
+                }
+                else if (creep is FastMonster)
+                {
+                    FastMonster fastMonster = creep as FastMonster;
+                    fastMonster.health = fastMonster.health - damage;
+                    if (fastMonster.health < 0)
+                    {
+                        Destroy(collision.gameObject);
+                    }
+                }
+                else
+                {
+                    TankMonster tankMonster = creep as TankMonster;
+                    tankMonster.health = tankMonster.health - damage;
+                    if (tankMonster.health < 0)
+                    {
+                        Destroy(collision.gameObject);
+                    }
+                }
             }
         }
         public void Skill()
