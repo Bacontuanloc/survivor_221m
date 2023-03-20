@@ -12,9 +12,9 @@ namespace Assets.Scripts.Char
         private CharacterState currentState;
         public Luciano()
         {
-            speed = 5f;
+            speed = 6f;
             health = 30f;
-            rotateSpeed = 630f;
+            rotateSpeed = 500;
         }
 
         private void Start()

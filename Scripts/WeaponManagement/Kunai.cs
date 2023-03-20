@@ -10,9 +10,9 @@ namespace Assets.Scripts.WeaponManagement
     public class Kunai : MonoBehaviour, IWeapon
     {
         public GameObject bulletPrefab;
-        public float bulletSpeed = 10f;
-        public float fireRate = 0.5f;
-        public float damage = 20f;
+        public float bulletSpeed;
+        public float fireRate;
+        public float damage;
         void Start()
         {
             InvokeRepeating("Shoot", 0f, fireRate);

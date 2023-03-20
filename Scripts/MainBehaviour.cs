@@ -69,6 +69,7 @@ public class MainBehaviour : MonoBehaviour
         Vector3 worldTopRight = character.transform.TransformPoint(localTopRight);
         Vector3 localTopLeft = new Vector3(-size.x / 2, size.y / 2, 0);
         Vector3 worldTopLeft = character.transform.TransformPoint(localTopLeft);
+        //Vector3 rotation = new Vector3(0f, 0f, 90f);
 
         weapon.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0);
         weapon.transform.position = (worldTopLeft + worldTopRight) / 2;
