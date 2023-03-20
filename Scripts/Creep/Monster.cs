@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Monster : Creep
 {
@@ -19,7 +20,7 @@ public class Monster : Creep
     {
         health = (float)(health * Math.Pow(1.25, level));
         damage = (float)(damage * Math.Pow(1.25, level));
-        InvokeRepeating("Shoot", 0f, fireRate);
+        InvokeRepeating("Shoot", 3f, fireRate);
     }
 
     // Update is called once per frame
@@ -27,23 +28,25 @@ public class Monster : Creep
     {
         MoveToMC();
     }
+    public void Shoot()
+    {
+        GameObject target = GameObject.FindWithTag("MC");
+        //gameObject.transform.position = Vector3.MoveTowards(transform.position, mc.transform.position, speed * Time.deltaTime);
+        GameObject cannonball = CreepBulletPool.SharedInstance.GetPooledObject();
+            if (cannonball != null)
+            {
+                cannonball.transform.position = gameObject.transform.position;
+                cannonball.GetComponent<CreepBullet>().Destination = target.transform.position;;
+                cannonball.SetActive(true);
+            }
+        
+    }
 
     protected void MoveToMC()
     {
         GameObject mc = GameObject.FindWithTag("MC");
         gameObject.transform.position = Vector3.MoveTowards(transform.position, mc.transform.position, speed * Time.deltaTime);
         
-    }
-    public void Shoot()
-    {
-        GameObject creepBullet = BulletPool.SharedInstance.GetPooledObject();
-        if (creepBullet != null)
-        {
-            GameObject mc = GameObject.FindWithTag("MC");
-            gameObject.transform.position = Vector3.MoveTowards(transform.position, mc.transform.position, speed * Time.deltaTime);
-            Rigidbody2D rb = creepBullet.GetComponent<Rigidbody2D>();
-            rb.AddForce(mc.transform.up * bulletSpeed, ForceMode2D.Impulse);
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
