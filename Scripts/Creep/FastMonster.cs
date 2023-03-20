@@ -1,16 +1,23 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FastMonster : Creep
 {
-    public float speed = 5f;
-    public float health = 50f;
-    public float damage = 7f;
+    private CreepState currentState;
+    public float speed;
+    public float health;
+    public float damage;
+    public FastMonster() { 
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        health = (float)(health * Math.Pow(1.25, level));
+        damage = (float)(damage * Math.Pow(1.25, level));
 
     }
 
@@ -23,7 +30,7 @@ public class FastMonster : Creep
     protected void MoveToMC()
     {
         GameObject mc = GameObject.FindWithTag("MC");
-        gameObject.transform.position = Vector3.MoveTowards(transform.position, mc.transform.position, speed * Time.deltaTime);
+        gameObject.transform.position = Vector3.MoveTowards(transform.position, mc.transform.position,  Time.deltaTime);
 
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -35,6 +42,7 @@ public class FastMonster : Creep
                 Destroy(gameObject);
             }
             health = health - 10;
+            ChangeState(new CreepOnHitState(this));
 
         }
         if (collision.gameObject.CompareTag("MC"))
@@ -44,5 +52,14 @@ public class FastMonster : Creep
 
     }
 
+    public override void ChangeState(CreepState newState)
+    {
+        if (currentState != null)
+        {
+            currentState.ExitState(this);
+        }
 
+        currentState = newState;
+        currentState.EnterState(this);
+    }
 }
