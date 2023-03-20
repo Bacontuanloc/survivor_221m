@@ -1,3 +1,5 @@
+using Assets.Scripts.Char;
+using Assets.Scripts.WeaponManagement;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -13,10 +15,14 @@ public class MainBehaviour : MonoBehaviour
     public GameObject enemyPrefab;
 
     public GameObject gunPrefab;
-    public GameObject monterPrefab;
-    public GameObject playerPrefab;
 
     public MonsterFactory monsterFactory;
+
+    public CharacterFactory characterFactory;
+
+    public WeaponFactory weaponFactory;
+
+    public static string pickedCharacter;
 
     private Timer timer;
 
@@ -46,37 +52,27 @@ public class MainBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        screenBounds = OrthographicBounds(Camera.main);
+        monsterFactory= gameObject.AddComponent<MonsterFactory>();
+        characterFactory = gameObject.AddComponent<CharacterFactory>();
+        weaponFactory = gameObject.AddComponent<WeaponFactory>();
 
-        points = new List<Vector3>();
-        Vector3 DownLeft = new Vector3(screenBounds.min.x, screenBounds.min.y, 0);
-        points.Add(DownLeft);
-        Vector3 UpLeft = new Vector3(screenBounds.min.x, screenBounds.max.y, 0);
-        points.Add(UpLeft);
-        Vector3 DownRight = new Vector3(screenBounds.max.x, screenBounds.min.y, 0);
-        points.Add(DownRight);
-        Vector3 UpRight = new Vector3(screenBounds.max.x, screenBounds.max.y, 0);
-        points.Add(UpRight);
+        //GameObject character = characterFactory.CreateLuciano();
+        GameObject character = characterFactory.Create(pickedCharacter);
+        //GameObject weapon = Instantiate(gunPrefab);
+        GameObject weapon = weaponFactory.InstantiateWeapon(pickedCharacter);
+        Physics2D.IgnoreCollision(weapon.GetComponent<Collider2D>(), character.GetComponent<Collider2D>());
 
-
-        monsterFactory = gameObject.AddComponent<MonsterFactory>();
-        GameObject player = Instantiate(playerPrefab);
-        GameObject gun = Instantiate(gunPrefab);
-        
-
-        Renderer renderer = player.GetComponent<Renderer>();
+        Renderer renderer = character.GetComponent<Renderer>();
         Vector3 size = renderer.bounds.size;
         Vector3 localTopRight = new Vector3(size.x / 2, size.y / 2, 0);
-        Vector3 worldTopRight = player.transform.TransformPoint(localTopRight);
+        Vector3 worldTopRight = character.transform.TransformPoint(localTopRight);
         Vector3 localTopLeft = new Vector3(-size.x / 2, size.y / 2, 0);
-        Vector3 worldTopLeft = player.transform.TransformPoint(localTopLeft);
+        Vector3 worldTopLeft = character.transform.TransformPoint(localTopLeft);
+        //Vector3 rotation = new Vector3(0f, 0f, 90f);
 
-        gun.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0);
-        gun.transform.position = (worldTopLeft + worldTopRight) / 2;
-        gun.transform.parent = player.transform;
-        GameObject boss = Instantiate(monterPrefab);
-        boss.transform.position = getRandomPoint();
-
+        weapon.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0);
+        weapon.transform.position = (worldTopLeft + worldTopRight) / 2;
+        weapon.transform.parent = character.transform;
         timer = gameObject.AddComponent<Timer>();
         timer.Duration = duration;
         timer.Run();
@@ -106,12 +102,13 @@ public class MainBehaviour : MonoBehaviour
             //    enemy.transform.position = getRandomPoint();
             //}
             //GameObject enemy = Instantiate(enemyPrefab);
+            GameObject enemy = monsterFactory.Create("normal");
+            enemy.transform.position = getRandomPoint();
+            GameObject fast = monsterFactory.Create("fast");
+            fast.transform.position = getRandomPoint();
+            GameObject tank = monsterFactory.Create("tank");
+            tank.transform.position = getRandomPoint();
 
-            //GameObject enemy = monsterFactory.Create("normal");
-            //enemy.transform.position = getRandomPoint();
-            //GameObject fast = monsterFactory.Create("fast");
-            //fast.transform.position = getRandomPoint();
-            
             timer.Duration = duration;
             timer.Run();
         }
