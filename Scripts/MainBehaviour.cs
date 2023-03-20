@@ -22,8 +22,6 @@ public class MainBehaviour : MonoBehaviour
 
     public WeaponFactory weaponFactory;
 
-    public WeaponType weaponType;
-
     public static string pickedCharacter;
 
     private Timer timer;
@@ -62,6 +60,7 @@ public class MainBehaviour : MonoBehaviour
         GameObject character = characterFactory.Create(pickedCharacter);
         //GameObject weapon = Instantiate(gunPrefab);
         GameObject weapon = weaponFactory.InstantiateWeapon(pickedCharacter);
+        Physics2D.IgnoreCollision(weapon.GetComponent<Collider2D>(), character.GetComponent<Collider2D>());
 
         Renderer renderer = character.GetComponent<Renderer>();
         Vector3 size = renderer.bounds.size;
