@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,36 +10,22 @@ namespace Assets.Scripts.WeaponManagement
 {
     public class Bat : MonoBehaviour, IWeapon
     {
-        public GameObject bulletPrefab;
-        public float bulletSpeed = 10f;
-        public float fireRate = 1f;
-        public float damage = 40f;
+        private float rotZ;
+        public float rotationSpeed;
         void Start()
         {
-            InvokeRepeating("Shoot", 0f, fireRate);
+            //InvokeRepeating("Shoot", 0f, rotationSpeed);
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            Shoot();
         }
         public void Shoot()
         {
-            Renderer renderer = gameObject.GetComponent<Renderer>();
-            Vector3 size = renderer.bounds.size;
-            Vector3 localTopRight = new Vector3(size.x / 2, size.y / 2, 0);
-            Vector3 worldTopRight = gameObject.transform.TransformPoint(localTopRight);
-            Vector3 localTopLeft = new Vector3(-size.x / 2, size.y / 2, 0);
-            Vector3 worldTopLeft = gameObject.transform.TransformPoint(localTopLeft);
-            GameObject bullet = BulletPool.SharedInstance.GetPooledObject();
-            if (bullet != null)
-            {
-                bullet.transform.position = (worldTopLeft + worldTopRight) / 2;
-                bullet.transform.rotation = gameObject.transform.rotation;
-                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-                rb.AddForce(gameObject.transform.up * bulletSpeed, ForceMode2D.Impulse);
-            }
+            rotZ += Time.deltaTime * rotationSpeed;
+            transform.rotation = Quaternion.Euler(0, 0, rotZ);
         }
 
         public void ExecuteSkill()

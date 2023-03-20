@@ -12,7 +12,7 @@ namespace Assets.Scripts.Char
         private CharacterState currentState;
 
         public Geran() {
-            speed = 3f;
+            speed = 5f;
             health = 50f;
             rotateSpeed = 500f;
         }

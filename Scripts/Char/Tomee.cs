@@ -11,9 +11,9 @@ namespace Assets.Scripts.Char
     {
         private CharacterState currentState;
         public Tomee() {
-            speed = 10f;
+            speed = 8f;
             health = 20f;
-            rotateSpeed = 8000f;
+            rotateSpeed = 500f;
         }
         private void Start()
         {
