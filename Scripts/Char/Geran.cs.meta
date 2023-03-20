@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Scripts/Management/BossAttackState.cs.meta
+guid: 66c32fd29a694dc48b1e489b52b1c15b
+========
 guid: d266ff6b416df8a4b8ff95f98dc4dee2
+>>>>>>>> main:Scripts/Char/Geran.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

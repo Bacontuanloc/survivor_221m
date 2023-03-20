@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Scripts/Boss/CircleDamage.cs.meta
+guid: d233d0ccbc1890f46ba7471195c41e00
+========
 guid: cfa7327b51b49a74c9feaac27d28fd9d
+>>>>>>>> main:Scripts/Char/CharacterFactory.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

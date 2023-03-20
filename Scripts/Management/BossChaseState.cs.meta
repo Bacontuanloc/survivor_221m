@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Scripts/Boss/Boss.cs.meta
-guid: e7527fec72509d049a934377fb010a8a
+<<<<<<<< HEAD:Scripts/Management/BossChaseState.cs.meta
+guid: e65a634e046b1d045b1c9a30d8fe4d5e
 ========
-guid: 831464495d893bc4a9d66168141a4178
->>>>>>>> main:Scripts/Char/Character.cs.meta
+guid: e58ee22a78e08b844b7f8c01b35b6b2d
+>>>>>>>> main:Scripts/KeepApart.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
