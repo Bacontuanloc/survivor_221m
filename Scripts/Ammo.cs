@@ -8,7 +8,7 @@ public class Ammo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -33,6 +33,20 @@ public class Ammo : MonoBehaviour
             }
             this.gameObject.SetActive(false);
             
+        }
+        if (collision.gameObject.CompareTag("MC"))
+        {
+            Player player = collision.gameObject.GetComponent<Player>();
+            if (player != null)
+            {
+                //player.health -= damage;
+
+                //if (player.health <= 0)
+                //{
+                //    Destroy(player);
+                //}
+            }
+            this.gameObject.SetActive(false);
         }
     }
 }
