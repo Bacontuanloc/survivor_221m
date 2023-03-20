@@ -8,7 +8,7 @@ namespace Assets.Scripts.WeaponManagement
 {
     public interface IWeapon
     {
-        void Shoot();
-        void ExecuteSkill();
+        void Attack();
+        void Skill();
     }
 }

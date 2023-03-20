@@ -15,7 +15,7 @@ namespace Assets.Scripts.WeaponManagement
         public float damage;
         void Start()
         {
-            InvokeRepeating("Shoot", 0f, fireRate);
+            InvokeRepeating("Attack", 0f, fireRate);
         }
 
         // Update is called once per frame
@@ -23,7 +23,7 @@ namespace Assets.Scripts.WeaponManagement
         {
 
         }
-        public void Shoot()
+        public void Attack()
         {
             Renderer renderer = gameObject.GetComponent<Renderer>();
             Vector3 size = renderer.bounds.size;
@@ -41,7 +41,7 @@ namespace Assets.Scripts.WeaponManagement
             }
         }
 
-        public void ExecuteSkill()
+        public void Skill()
         {
             throw new NotImplementedException();
         }

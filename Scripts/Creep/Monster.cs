@@ -38,7 +38,7 @@ public class Monster : Creep
             health = health - 10;
             
         }
-        if (collision.gameObject.CompareTag("MC"))
+        if (collision.gameObject.CompareTag("Bullet"))
         {
            Destroy(gameObject);
         }
