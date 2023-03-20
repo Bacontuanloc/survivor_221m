@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6766496513501921554}
   - component: {fileID: 3505031201143691838}
-  - component: {fileID: 5956266368415962298}
   - component: {fileID: -7739214572859662798}
   - component: {fileID: -8549354945841216822}
+  - component: {fileID: 5956266368415962298}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Enemy
@@ -87,21 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5956266368415962298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2864953563765644657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8b00d847eba7824e878aa73b1367c98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  health: 20
-  damage: 7
 --- !u!58 &-7739214572859662798
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -139,3 +124,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5956266368415962298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2864953563765644657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b00d847eba7824e878aa73b1367c98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  health: 20
+  damage: 7

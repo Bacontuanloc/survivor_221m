@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2734783239574071213}
   m_Layer: 0
   m_Name: Bat
-  m_TagString: Bullet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 400
+  damage: 40
 --- !u!61 &2734783239574071213
 BoxCollider2D:
   m_ObjectHideFlags: 0

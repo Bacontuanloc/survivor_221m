@@ -57,7 +57,6 @@ namespace Assets.Scripts.Char
         {
             if (collision.gameObject.CompareTag("Enemy"))
             {
-                Creep monster = collision.gameObject.GetComponent<Monster>();
                 //health -= monster.damage;
                 //ChangeState(new OnHitState());
             }
