@@ -83,7 +83,7 @@ public class MainBehaviour : MonoBehaviour
         timer = gameObject.AddComponent<Timer>();
         timer.Duration = duration;
         timer.Run();
-        Invoke("SummonBoss",10f);
+        //Invoke("SummonBoss",10f);
     }
 
     void registerObserverEnemyKill(string pickedCharacter)

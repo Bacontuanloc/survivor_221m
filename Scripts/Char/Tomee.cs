@@ -68,9 +68,7 @@ namespace Assets.Scripts.Char
             if (collision.gameObject.CompareTag("CreepBullet"))
             {
                 CreepBullet creepBullet = collision.gameObject.GetComponent<CreepBullet>();
-                health -= monster.damage;
                 ChangeState(new OnHitState(this));
-                ChangeState(new OnHitState());
                 Debug.Log(currentHealth);
                 healthBar.TakeDamage(creepBullet.damage);
             }
