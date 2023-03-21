@@ -8,12 +8,12 @@ using UnityEngine.Pool;
 public class Monster : Creep
 {
     private CreepState currentState;
-    public float current_healt;
+    public float currentHealth;
     public float speed;
     public float health;
     public float damage;
-    public float bulletSpeed = 1f;
-    public float fireRate = 1f;
+    public float bulletSpeed;
+    public float fireRate;
 
 
     // Start is called before the first frame update
@@ -60,10 +60,7 @@ public class Monster : Creep
             }
             health = health - 10;
             ChangeState(new CreepOnHitState(this));
-            
         }
-
-
     }
 
     public override void ChangeState(CreepState newState)
@@ -79,6 +76,5 @@ public class Monster : Creep
 
     public override void TakeDamage(int damageAmount)
     {
-        throw new NotImplementedException();
     }
 }

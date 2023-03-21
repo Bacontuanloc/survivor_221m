@@ -34,6 +34,13 @@ namespace Assets.Scripts.WeaponManagement
             GameObject bullet = BulletPool.SharedInstance.GetPooledObject();
             if (bullet != null)
             {
+                GameObject character = GameObject.FindWithTag("MC");
+                Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), character.GetComponent<Collider2D>());
+                GameObject[] creepBullet = GameObject.FindGameObjectsWithTag("CreepBullet");
+                for (int i = 0; i < creepBullet.Length; i++)
+                {
+                    Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), creepBullet[i].GetComponent<Collider2D>());
+                }
                 bullet.transform.position = (worldTopLeft + worldTopRight) / 2;
                 bullet.transform.rotation = gameObject.transform.rotation;
                 Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();

@@ -63,14 +63,5 @@ public class CreepBullet : MonoBehaviour
             this.gameObject.SetActive(false);
             
         }
-        if (collision.gameObject.CompareTag("Bullet"))
-        {
-            GameObject[] bullet = GameObject.FindGameObjectsWithTag("Bullet");
-            GameObject creepBullet = GameObject.FindWithTag("CreepBullet");
-            for(int i = 0; i< bullet.Length; i++)
-            {
-                Physics2D.IgnoreCollision(bullet[i].GetComponent<Collider2D>(), creepBullet.GetComponent<Collider2D>());
-            }
-        }
     }
 }

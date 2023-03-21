@@ -78,7 +78,7 @@ public class MainBehaviour : MonoBehaviour
         timer = gameObject.AddComponent<Timer>();
         timer.Duration = duration;
         timer.Run();
-        InvokeRepeating("SummonBoss", 0f, 120f);
+        //InvokeRepeating("SummonBoss", 0f, 120f);
     }
 
     // Update is called once per frame
