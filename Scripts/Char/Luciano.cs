@@ -10,6 +10,7 @@ namespace Assets.Scripts.Char
     public class Luciano : Character
     {
         private CharacterState currentState;
+  
         public Luciano()
         {
             speed = 6f;
@@ -24,6 +25,9 @@ namespace Assets.Scripts.Char
                 Creep monster = collision.gameObject.GetComponent<Monster>();
                 //health -= monster.damage;
                 //ChangeState(new OnHitState());
+                Debug.Log(currentHealth);
+                healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
+                healthBar.TakeDamage(5);
             }
         }
 

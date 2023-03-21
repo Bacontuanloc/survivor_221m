@@ -10,18 +10,20 @@ namespace Assets.Scripts.Char
     public class Tomee : Character
     {
         private CharacterState currentState;
+
         public Tomee() {
             speed = 8f;
             health = 20f;
             rotateSpeed = 500f;
         }
+
         public override void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.CompareTag("Enemy"))
             {
-                Creep monster = collision.gameObject.GetComponent<Monster>();
-                //health -= monster.damage;
-                //ChangeState(new OnHitState());
+                Debug.Log(currentHealth);
+                healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
+                healthBar.TakeDamage(5);
             }
         }
 

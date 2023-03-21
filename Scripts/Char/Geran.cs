@@ -10,13 +10,13 @@ namespace Assets.Scripts.Char
     public class Geran : Character
     {
         private CharacterState currentState;
+       
 
         public Geran() {
             speed = 5f;
             health = 50f;
             rotateSpeed = 500f;
-        }
-
+        }      
 
         public override void OnCollisionEnter2D(Collision2D collision)
         {
@@ -24,12 +24,15 @@ namespace Assets.Scripts.Char
             {
                 //health -= monster.damage;
                 //ChangeState(new OnHitState());
+                Debug.Log(currentHealth);
+                healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
+                healthBar.TakeDamage(5);
             }
         }
 
         public override void TakeDamage(int damageAmount)
         {
-            health = health -damageAmount;
+          //  health = health -damageAmount;
         }
     }
 }
