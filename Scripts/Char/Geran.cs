@@ -22,12 +22,6 @@ namespace Assets.Scripts.Char
                     Monster monster = creep as Monster;
                     health -= monster.damage;
                     ChangeState(new OnHitState(this));
-                    if (health <= 0)
-                    {
-                        //gameObject.GetComponent<CreepBulletPool>().poolBullet = new List<GameObject>();
-                       // Destroy(gameObject);
-                        
-                    }
                     healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
                     healthBar.TakeDamage(monster.damage);
                 }
@@ -36,10 +30,6 @@ namespace Assets.Scripts.Char
                     FastMonster fastMonster = creep as FastMonster;
                     health -= fastMonster.damage;
                     ChangeState(new OnHitState(this));
-                    if (health <= 0)
-                    {
-                       // Destroy(gameObject);
-                    }
                     healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
                     healthBar.TakeDamage(fastMonster.damage);
                 }
@@ -48,10 +38,6 @@ namespace Assets.Scripts.Char
                     TankMonster tankMonster = creep as TankMonster;
                     health -= tankMonster.damage;
                     ChangeState(new OnHitState(this));
-                    if (health <= 0)
-                    {
-                       // Destroy(gameObject);
-                    }
                     healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
                     healthBar.TakeDamage(tankMonster.damage);
                 }
@@ -61,10 +47,6 @@ namespace Assets.Scripts.Char
                 Boss boss = collision.gameObject.GetComponent<Boss>();
                 health -= boss.damage;
                 ChangeState(new OnHitState(this));
-                if (health <= 0)
-                {
-                    //Destroy(gameObject);
-                }
                 healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
                 healthBar.TakeDamage(boss.damage);
             }
@@ -76,6 +58,13 @@ namespace Assets.Scripts.Char
                 Debug.Log(currentHealth);
                 healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
                 healthBar.TakeDamage(creepBullet.damage);
+            }
+            if (health <= 0)
+            {
+                Time.timeScale = 0;
+                pausePanel.SetActive(true);
+                //gameObject.GetComponent<CreepBulletPool>().poolBullet = new List<GameObject>();
+                // Destroy(gameObject);
             }
         }
 

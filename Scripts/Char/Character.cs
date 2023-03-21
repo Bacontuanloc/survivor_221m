@@ -13,10 +13,16 @@ public abstract class Character : MonoBehaviour
     public float rotateSpeed;
     public float currentHealth;
     public HealthBar healthBar;
+    public GameObject pausePanel;
 
 
     private void Start()
     {
+        pausePanel = GameObject.FindWithTag("EndGamePanel");
+        if (pausePanel != null)
+        {
+            pausePanel.SetActive(false);
+        }
         currentHealth = health;
         healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
         healthBar.SetMaxHealth(health);

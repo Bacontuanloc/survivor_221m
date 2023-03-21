@@ -21,6 +21,9 @@ namespace Assets.Scripts.Char
                 if (creep is Monster)
                 {
                     Monster monster = creep as Monster;
+
+                    //health -= monster.damage;
+                    ChangeState(new OnHitState(this));                
                     health -= monster.damage;
                     ChangeState(new OnHitState(this));
                     if (health <= 0)
@@ -33,6 +36,8 @@ namespace Assets.Scripts.Char
                 else if (creep is FastMonster)
                 {
                     FastMonster fastMonster = creep as FastMonster;
+                    //health -= fastMonster.damage;
+                    ChangeState(new OnHitState(this));                  
                     health -= fastMonster.damage;
                     ChangeState(new OnHitState(this));
                     if (health <= 0)
@@ -45,12 +50,17 @@ namespace Assets.Scripts.Char
                 else
                 {
                     TankMonster tankMonster = creep as TankMonster;
+
+                    //health -= tankMonster.damage;
+                    ChangeState(new OnHitState(this));                 
+
                     health -= tankMonster.damage;
                     ChangeState(new OnHitState(this));
                     if (health <= 0)
                     {
                        // Destroy(gameObject);
                     }
+
                     healthBar.TakeDamage(tankMonster.damage);
                 }
             }
@@ -59,10 +69,6 @@ namespace Assets.Scripts.Char
                 Boss boss = collision.gameObject.GetComponent<Boss>();
                 health -= boss.damage;
                 ChangeState(new OnHitState(this));
-                if (health <= 0)
-                {
-                    //Destroy(gameObject);
-                }
                 healthBar.TakeDamage(boss.damage);
             }
             if (collision.gameObject.CompareTag("Bullet"))
@@ -78,6 +84,13 @@ namespace Assets.Scripts.Char
                 ChangeState(new OnHitState(this));
                 Debug.Log(currentHealth);
                 healthBar.TakeDamage(creepBullet.damage);
+            }
+            if (health <= 0)
+            {
+                Time.timeScale = 0;
+                pausePanel.SetActive(true);
+                //gameObject.GetComponent<CreepBulletPool>().poolBullet = new List<GameObject>();
+                // Destroy(gameObject);
             }
         }
 
