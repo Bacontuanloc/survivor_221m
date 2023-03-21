@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.WeaponManagement
 {
@@ -15,8 +16,13 @@ namespace Assets.Scripts.WeaponManagement
         public float bulletSpeed;
         public float fireRate;
         public float damage;
+        public Text enemiesDestroyedText;
+        public int scoreNum;
+
         void Start()
         {
+            scoreNum = 0;
+            enemiesDestroyedText = GameObject.FindWithTag("Mytext").GetComponent<Text>();
             InvokeRepeating("Attack", 0f, fireRate);
         }
 
@@ -60,7 +66,9 @@ namespace Assets.Scripts.WeaponManagement
                     monster.health = monster.health - damage;
                     if (monster.health < 0)
                     {
+                        scoreNum += 1;
                         Destroy(collision.gameObject);
+                        enemiesDestroyedText.text = "Enemy Destroyed" + scoreNum;
                     }
                 }
                 else if (creep is FastMonster)
@@ -69,7 +77,9 @@ namespace Assets.Scripts.WeaponManagement
                     fastMonster.health = fastMonster.health - damage;
                     if (fastMonster.health < 0)
                     {
+                        scoreNum += 1;
                         Destroy(collision.gameObject);
+                        enemiesDestroyedText.text = "Enemy Destroyed" + scoreNum;
                     }
                 }
                 else
@@ -78,7 +88,9 @@ namespace Assets.Scripts.WeaponManagement
                     tankMonster.health = tankMonster.health - damage;
                     if (tankMonster.health < 0)
                     {
+                        scoreNum += 1;
                         Destroy(collision.gameObject);
+                        enemiesDestroyedText.text = "Enemy Destroyed" + scoreNum;
                     }
                 }
             }
