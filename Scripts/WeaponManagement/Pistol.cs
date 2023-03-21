@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.WeaponManagement
 {
-    public class Pistol : MonoBehaviour, IWeapon
+    public class Pistol : Weapon
     {
         public GameObject bulletPrefab;
         public float bulletSpeed;
@@ -37,7 +37,7 @@ namespace Assets.Scripts.WeaponManagement
         {
 
         }
-        public void Attack()
+        public override void Attack()
         {
             Renderer renderer = gameObject.GetComponent<Renderer>();
             Vector3 size = renderer.bounds.size;
@@ -61,60 +61,7 @@ namespace Assets.Scripts.WeaponManagement
                 rb.AddForce(gameObject.transform.up * bulletSpeed, ForceMode2D.Impulse);
             }
         }
-        public void OnCollisionEnter2D(Collision2D collision)
-        {
-
-            if (collision.gameObject.CompareTag("Enemy"))
-            {
-                Creep creep = collision.gameObject.GetComponent<Creep>();
-
-                if (creep is Monster)
-                {
-                    Monster monster = creep as Monster;
-                    monster.health = monster.health - damage;
-                    if (monster.health < 0)
-                    {
-                        count++;
-                        scoreNum += 1;
-                        Destroy(collision.gameObject);
-                        enemiesDestroyedText.text = "Enemy Destroyed" + scoreNum;
-                    }
-                }
-                else if (creep is FastMonster)
-                {
-                    FastMonster fastMonster = creep as FastMonster;
-                    fastMonster.health = fastMonster.health - damage;
-                    if (fastMonster.health < 0)
-                    {
-                        count++;
-                        scoreNum += 1;
-                        Destroy(collision.gameObject);
-                        enemiesDestroyedText.text = "Enemy Destroyed" + scoreNum;
-                    }
-                }
-                else
-                {
-                    TankMonster tankMonster = creep as TankMonster;
-                    tankMonster.health = tankMonster.health - damage;
-                    if (tankMonster.health < 0)
-                    {
-                        count++;
-                        scoreNum += 1;
-                        Destroy(collision.gameObject);
-                        enemiesDestroyedText.text = "Enemy Destroyed" + scoreNum;
-                    }
-                }
-                Debug.Log("count : " + count);
-                if (count % 10 == 0)
-                {
-                    Debug.Log("Create Bomb");
-                    GameObject item = itemFactory.Create("bomb");
-                    item.transform.position = collision.gameObject.transform.position;
-                }
-            }
-        }
-
-        public void Skill()
+        public override void Skill()
         {
             throw new NotImplementedException();
         }

@@ -13,7 +13,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.WeaponManagement
 {
-    public class Bat : MonoBehaviour, IWeapon
+    public class Bat : Weapon
     {
         private float rotZ;
         public float rotationSpeed;
@@ -38,7 +38,7 @@ namespace Assets.Scripts.WeaponManagement
         {
             Attack();
         }
-        public void Attack()
+        public override void Attack()
         {
             rotZ += Time.deltaTime * rotationSpeed;
             transform.rotation = Quaternion.Euler(0, 0, rotZ);
@@ -54,7 +54,7 @@ namespace Assets.Scripts.WeaponManagement
                 {
                     Monster monster = creep as Monster;
                     monster.health = monster.health - damage;
-                    if (monster.health < 0)
+                    if (monster.health <= 0)
                     {
                         count++;
                         scoreNum+=1;
@@ -66,7 +66,7 @@ namespace Assets.Scripts.WeaponManagement
                 {
                     FastMonster fastMonster = creep as FastMonster;
                     fastMonster.health = fastMonster.health - damage;
-                    if (fastMonster.health < 0)
+                    if (fastMonster.health <= 0)
                     {
                         count++;
                         scoreNum += 1;
@@ -78,7 +78,7 @@ namespace Assets.Scripts.WeaponManagement
                 {
                     TankMonster tankMonster = creep as TankMonster;
                     tankMonster.health = tankMonster.health - damage;
-                    if (tankMonster.health < 0)
+                    if (tankMonster.health <= 0)
                     {
                         count++;
                         scoreNum+= 1;
@@ -95,7 +95,7 @@ namespace Assets.Scripts.WeaponManagement
                 }
             }
         }
-        public void Skill()
+        public override void Skill()
         {
             throw new NotImplementedException();
         }
