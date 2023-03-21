@@ -33,6 +33,7 @@ public class Boss : MonoBehaviour
         health = 50 * level;
         damage = 12 * level;
         timer = gameObject.AddComponent<Timer>();
+        timerSummonBoss = gameObject.AddComponent<Timer>();
         timer.Duration = fireRate;
         timer.Run();
         CurrentState = new BossChaseState(this);

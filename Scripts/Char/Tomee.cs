@@ -21,7 +21,7 @@ namespace Assets.Scripts.Char
                 if (creep is Monster)
                 {
                     Monster monster = creep as Monster;
-                    //health -= monster.damage;
+                    health -= monster.damage;
                     ChangeState(new OnHitState(this));
                     if (health <= 0)
                     {
@@ -33,7 +33,7 @@ namespace Assets.Scripts.Char
                 else if (creep is FastMonster)
                 {
                     FastMonster fastMonster = creep as FastMonster;
-                    //health -= fastMonster.damage;
+                    health -= fastMonster.damage;
                     ChangeState(new OnHitState(this));
                     if (health <= 0)
                     {
@@ -44,7 +44,7 @@ namespace Assets.Scripts.Char
                 else
                 {
                     TankMonster tankMonster = creep as TankMonster;
-                    //health -= tankMonster.damage;
+                    health -= tankMonster.damage;
                     ChangeState(new OnHitState(this));
                     if (health <= 0)
                     {
@@ -57,7 +57,7 @@ namespace Assets.Scripts.Char
             if (collision.gameObject.CompareTag("Boss"))
             {
                 Boss boss = collision.gameObject.GetComponent<Boss>();
-                //health -= boss.damage;
+                health -= boss.damage;
                 ChangeState(new OnHitState(this));
                 if (health <= 0)
                 {
@@ -68,9 +68,9 @@ namespace Assets.Scripts.Char
             if (collision.gameObject.CompareTag("CreepBullet"))
             {
                 CreepBullet creepBullet = collision.gameObject.GetComponent<CreepBullet>();
-                //health -= monster.damage;
+                health -= monster.damage;
                 ChangeState(new OnHitState(this));
-                //ChangeState(new OnHitState());
+                ChangeState(new OnHitState());
                 Debug.Log(currentHealth);
                 healthBar.TakeDamage(creepBullet.damage);
             }
