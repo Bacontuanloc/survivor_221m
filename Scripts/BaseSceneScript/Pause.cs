@@ -35,18 +35,15 @@ public class Pause : MonoBehaviour
 
     public void RestartGame()
     {
-
         SceneManager.LoadScene("ChoosePlayer");
-        Time.timeScale = 0;
+        Time.timeScale = 1;
         pausePanel.SetActive(false);
-
     }
 
     public void BackToMainMenu()
     {
-
         SceneManager.LoadScene("Main");
-        Time.timeScale = 0;
+        Time.timeScale = 1;
         pausePanel.SetActive(false);
     }
 }
