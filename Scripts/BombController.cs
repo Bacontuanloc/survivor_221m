@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class BombController : MonoBehaviour
@@ -34,7 +35,7 @@ public class BombController : MonoBehaviour
             Boss boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
             if (player != null)
             {
-                player.health -= boss.damage * 1.5f;
+                player.healthBar.TakeDamage(boss.damage * 1.5f);
             }
             Destroy(gameObject);
         }
