@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Char;
-using Assets.Scripts.Weapons;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,14 +22,11 @@ namespace Assets.Scripts.WeaponManagement
 
             
 
-        public Text enemiesDestroyedText;
-        public int scoreNum;
+        public Observable<bool> UpdateScore = new Observable<bool>();
 
         void Start()
         {
             itemFactory=gameObject.AddComponent<ItemFactory>();
-            scoreNum = 0;
-            enemiesDestroyedText = GameObject.FindWithTag("Mytext").GetComponent<Text>();     
 
         }
         // Update is called once per frame
@@ -57,9 +53,8 @@ namespace Assets.Scripts.WeaponManagement
                     if (monster.health <= 0)
                     {
                         count++;
-                        scoreNum+=1;
                         Destroy(collision.gameObject);
-                        enemiesDestroyedText.text = "Enemy Destroyed" + scoreNum;
+                        UpdateScore.Notify(true);
                     }
                 }
                 else if (creep is FastMonster)
@@ -69,9 +64,8 @@ namespace Assets.Scripts.WeaponManagement
                     if (fastMonster.health <= 0)
                     {
                         count++;
-                        scoreNum += 1;
                         Destroy(collision.gameObject);
-                        enemiesDestroyedText.text = "Enemy Destroyed" + scoreNum;
+                        UpdateScore.Notify(true);
                     }
                 }
                 else
@@ -81,9 +75,8 @@ namespace Assets.Scripts.WeaponManagement
                     if (tankMonster.health <= 0)
                     {
                         count++;
-                        scoreNum+= 1;
                         Destroy(collision.gameObject);
-                        enemiesDestroyedText.text = "Enemy Destroyed: " + scoreNum;
+                        UpdateScore.Notify(true);
                     }
                 }
                 Debug.Log("count : "+count);

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainBehaviour : MonoBehaviour
 {
@@ -28,6 +29,9 @@ public class MainBehaviour : MonoBehaviour
     private Timer timer;
 
     List<Vector3> points;
+    public Text enemiesDestroyedText;
+
+    public Score score;
 
     private Bounds OrthographicBounds(Camera camera)
     {
@@ -61,6 +65,7 @@ public class MainBehaviour : MonoBehaviour
         character = characterFactory.Create(pickedCharacter);
         //GameObject weapon = Instantiate(gunPrefab);
         GameObject weapon = weaponFactory.InstantiateWeapon(pickedCharacter);
+        registerObserverEnemyKill(pickedCharacter);
         Physics2D.IgnoreCollision(weapon.GetComponent<Collider2D>(), character.GetComponent<Collider2D>());
 
 
@@ -79,6 +84,31 @@ public class MainBehaviour : MonoBehaviour
         timer.Duration = duration;
         timer.Run();
         //InvokeRepeating("SummonBoss", 0f, 120f);
+    }
+
+    void registerObserverEnemyKill(string pickedCharacter)
+    {
+        score = FindObjectOfType<Score>();
+        if (score != null)
+        {
+            switch (pickedCharacter)
+            {
+                case "geran":
+                    Bat batWeapon = FindObjectOfType<Bat>();
+                    if (batWeapon != null)
+                    {
+                        batWeapon.UpdateScore.Subscribe(score.updateScore);
+                    }
+                    break;
+                default:
+                    Ammo[] ammoList = FindObjectsOfType<Ammo>();
+                    foreach (Ammo ammo in ammoList)
+                    {
+                        ammo.UpdateScore.Subscribe(score.updateScore);
+                    }
+                    break;
+            }
+        }
     }
 
     // Update is called once per frame

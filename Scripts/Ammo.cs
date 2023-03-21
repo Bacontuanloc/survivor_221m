@@ -1,6 +1,5 @@
 using Assets.Scripts.Char;
 using Assets.Scripts.WeaponManagement;
-using Assets.Scripts.Weapons.Factory;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +10,7 @@ public class Ammo : MonoBehaviour
     private int damage = 5;
     private Bounds screenBounds;
     private WeaponFactory weaponFactory;
+    public Observable<bool> UpdateScore = new Observable<bool>();
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +42,7 @@ public class Ammo : MonoBehaviour
                 if (monster.health <= 0)
                 {
                     Destroy(collision.gameObject);
+                    UpdateScore.Notify(true);
                 }
                 this.gameObject.SetActive(false);
             }
@@ -52,6 +53,7 @@ public class Ammo : MonoBehaviour
                 if (fastMonster.health <= 0)
                 {
                     Destroy(collision.gameObject);
+                    UpdateScore.Notify(true);
                 }
                 this.gameObject.SetActive(false);
             }
@@ -62,6 +64,7 @@ public class Ammo : MonoBehaviour
                 if (tankMonster.health <= 0)
                 {
                     Destroy(collision.gameObject);
+                    UpdateScore.Notify(true);
                 }
                 this.gameObject.SetActive(false);
             }

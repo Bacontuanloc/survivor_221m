@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Weapons;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,16 +18,12 @@ namespace Assets.Scripts.WeaponManagement
         public int count = 1;
         private ItemFactory itemFactory;
 
-        public Text enemiesDestroyedText;
         public int scoreNum;
 
 
         void Start()
         {
             itemFactory = gameObject.AddComponent<ItemFactory>();
-            scoreNum = 0;
-            enemiesDestroyedText = GameObject.FindWithTag("Mytext").GetComponent<Text>();
-
             InvokeRepeating("Attack", 0f, fireRate);
         }
 
