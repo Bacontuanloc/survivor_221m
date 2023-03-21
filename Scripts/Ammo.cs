@@ -38,8 +38,8 @@ public class Ammo : MonoBehaviour
             if (creep is Monster)
             {
                 Monster monster = creep as Monster;
-                monster.currentHealth = monster.currentHealth - weaponDamage;
-                if (monster.currentHealth <= 0)
+                monster.health = monster.health - weaponDamage;
+                if (monster.health <= 0)
                 {
                     Destroy(collision.gameObject);
                 }
@@ -48,8 +48,8 @@ public class Ammo : MonoBehaviour
             else if (creep is FastMonster)
             {
                 FastMonster fastMonster = creep as FastMonster;
-                fastMonster.currentHealth = fastMonster.currentHealth - weaponDamage;
-                if (fastMonster.currentHealth <= 0)
+                fastMonster.health = fastMonster.health - weaponDamage;
+                if (fastMonster.health <= 0)
                 {
                     Destroy(collision.gameObject);
                 }
@@ -58,8 +58,8 @@ public class Ammo : MonoBehaviour
             else
             {
                 TankMonster tankMonster = creep as TankMonster;
-                tankMonster.currentHealth = tankMonster.currentHealth - weaponDamage;
-                if (tankMonster.currentHealth <= 0)
+                tankMonster.health = tankMonster.health - weaponDamage;
+                if (tankMonster.health <= 0)
                 {
                     Destroy(collision.gameObject);
                 }
