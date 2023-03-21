@@ -27,6 +27,7 @@ public class Ammo : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log(collision.gameObject.tag);
         //Xu ly va cham giua bullet weapon cua character vs enemy
         if (collision.gameObject.CompareTag("Enemy") && gameObject.CompareTag("Bullet"))
         {
@@ -90,14 +91,14 @@ public class Ammo : MonoBehaviour
         //Xu ly va cham giua bullet cua boss vs character
         if (collision.gameObject.CompareTag("MC") && gameObject.CompareTag("BossBullet"))
         {
-            Boss boss = collision.gameObject.GetComponent<Boss>();
+            Boss boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
             Character character = collision.gameObject.GetComponent<Character>();
             Luciano luciano = character as Luciano;
             Geran geran = character as Geran;
             Tomee tomee = character as Tomee;
             if (luciano != null)
             {
-                luciano.health -= boss.damage;
+                luciano.healthBar.TakeDamage(boss.damage); 
                 if (luciano.health <= 0)
                 {
                     Destroy(collision.gameObject);
@@ -106,7 +107,7 @@ public class Ammo : MonoBehaviour
             }
             else if(geran != null)
             {
-                geran.health -= boss.damage;
+                geran.healthBar.TakeDamage(boss.damage);
                 if (geran.health <= 0)
                 {
                     Destroy(collision.gameObject);
@@ -115,7 +116,7 @@ public class Ammo : MonoBehaviour
             }
             else
             {
-                tomee.health -= boss.damage;
+                tomee.healthBar.TakeDamage(boss.damage);
                 if (tomee.health <= 0)
                 {
                     Destroy(collision.gameObject);

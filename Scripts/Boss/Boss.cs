@@ -30,8 +30,8 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = 50 * level;
-        damage = 12 * level;
+        health = 1000 * level;
+        damage = 20 * level;
         timer = gameObject.AddComponent<Timer>();
         timerSummonBoss = gameObject.AddComponent<Timer>();
         timer.Duration = fireRate;
@@ -46,7 +46,7 @@ public class Boss : MonoBehaviour
     {
         if (health <= 0)
         {
-            timerSummonBoss.Duration = 120f;
+            timerSummonBoss.Duration = 10f;
             timerSummonBoss.Run();
         }
         if (timerSummonBoss.Finished)
@@ -93,7 +93,7 @@ public class Boss : MonoBehaviour
     {
         if (timer.Finished)
         {
-            GameObject bullet = BulletPool.SharedInstance.GetPooledObject();
+            GameObject bullet = BossBulletPool.SharedInstance.GetPooledObject();
             GameObject player = GameObject.FindWithTag("MC");
             if (bullet != null)
             {
@@ -102,8 +102,13 @@ public class Boss : MonoBehaviour
                 Vector3 direction = (player.transform.position - this.transform.position).normalized;
                 bullet.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
                 Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), bullet.GetComponent<Collider2D>());
+                GameObject[] bombs = GameObject.FindGameObjectsWithTag("Bomb");
+                for (int i = 0; i < bombs.Length; i++)
+                {
+                    Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), bombs[i].GetComponent<Collider2D>());
+                }
             }
-            timer.Duration =fireRate;
+            timer.Duration = fireRate;
             timer.Run();
         }
     }
@@ -142,12 +147,5 @@ public class Boss : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Bullet"))
-        {
-            Ammo ammo = collision.gameObject.GetComponent<Ammo>();
-            Debug.Log("Before: " + health);
-            health -= ammo.damage;
-            Debug.Log("After: " + health);
-        }
     }
 }
