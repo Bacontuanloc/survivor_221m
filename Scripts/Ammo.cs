@@ -8,7 +8,7 @@ using WeaponFactory = Assets.Scripts.WeaponManagement.WeaponFactory;
 
 public class Ammo : MonoBehaviour
 {
-    private int damage = 5;
+    public int damage = 5;
     private Bounds screenBounds;
     private WeaponFactory weaponFactory;
     // Start is called before the first frame update
