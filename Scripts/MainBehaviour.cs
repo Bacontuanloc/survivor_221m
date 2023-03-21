@@ -62,6 +62,7 @@ public class MainBehaviour : MonoBehaviour
         GameObject weapon = weaponFactory.InstantiateWeapon(pickedCharacter);
         Physics2D.IgnoreCollision(weapon.GetComponent<Collider2D>(), character.GetComponent<Collider2D>());
 
+
         Renderer renderer = character.GetComponent<Renderer>();
         Vector3 size = renderer.bounds.size;
         Vector3 localTopRight = new Vector3(size.x / 2, size.y / 2, 0);
