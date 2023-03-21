@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.WeaponManagement
 {
-    public class Kunai : MonoBehaviour, IWeapon
+    public class Kunai : Weapon
     {
         public GameObject bulletPrefab;
         public float bulletSpeed;
@@ -23,7 +23,7 @@ namespace Assets.Scripts.WeaponManagement
         {
 
         }
-        public void Attack()
+        public override void Attack()
         {
             Renderer renderer = gameObject.GetComponent<Renderer>();
             Vector3 size = renderer.bounds.size;
@@ -47,41 +47,7 @@ namespace Assets.Scripts.WeaponManagement
                 rb.AddForce(gameObject.transform.up * bulletSpeed, ForceMode2D.Impulse);
             }
         }
-        public void OnCollisionEnter2D(Collision2D collision)
-        {
-            if (collision.gameObject.CompareTag("Enemy"))
-            {
-                Creep creep = collision.gameObject.GetComponent<Creep>();
-                if (creep is Monster)
-                {
-                    Monster monster = creep as Monster;
-                    monster.health = monster.health - damage;
-                    if (monster.health < 0)
-                    {
-                        Destroy(collision.gameObject);
-                    }
-                }
-                else if (creep is FastMonster)
-                {
-                    FastMonster fastMonster = creep as FastMonster;
-                    fastMonster.health = fastMonster.health - damage;
-                    if (fastMonster.health < 0)
-                    {
-                        Destroy(collision.gameObject);
-                    }
-                }
-                else
-                {
-                    TankMonster tankMonster = creep as TankMonster;
-                    tankMonster.health = tankMonster.health - damage;
-                    if (tankMonster.health < 0)
-                    {
-                        Destroy(collision.gameObject);
-                    }
-                }
-            }
-        }
-        public void Skill()
+        public override void Skill()
         {
             throw new NotImplementedException();
         }

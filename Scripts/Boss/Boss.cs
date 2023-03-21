@@ -7,7 +7,7 @@ public class Boss : MonoBehaviour
 {
     private int level;
     private float health;
-    private float damage;
+    public float damage;
     private float detectionRadius = 10f;
 
     private float fireRate = 0.1f;

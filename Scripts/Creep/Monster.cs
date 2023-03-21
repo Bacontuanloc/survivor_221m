@@ -40,7 +40,6 @@ public class Monster : Creep
                 cannonball.GetComponent<CreepBullet>().Destination = target.transform.position;;
                 cannonball.SetActive(true);
             }
-        
     }
 
     protected void MoveToMC()

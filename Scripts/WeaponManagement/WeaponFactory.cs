@@ -30,5 +30,22 @@ namespace Assets.Scripts.WeaponManagement
                     return null;
             }
         }
+        public GameObject CreateWeapon(string character)
+        {
+            switch (character)
+            {
+                case "luciano":
+                    var pistol = Resources.Load("Prefabs/Pistol") as GameObject;
+                    return pistol;
+                case "tomee":
+                    var kunai = Resources.Load("Prefabs/Kunai") as GameObject;
+                    return kunai;
+                case "geran":
+                    var bat = Resources.Load("Prefabs/Bat") as GameObject;
+                    return bat;
+                default:
+                    return null;
+            }
+        }
     }
 }
