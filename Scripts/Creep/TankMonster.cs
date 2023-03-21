@@ -33,7 +33,10 @@ public class TankMonster : Creep
     protected void MoveToMC()
     {
         GameObject mc = GameObject.FindWithTag("MC");
-        gameObject.transform.position = Vector3.MoveTowards(transform.position, mc.transform.position, speed * Time.deltaTime);
+        if (mc != null) {
+            gameObject.transform.position = Vector3.MoveTowards(transform.position, mc.transform.position, speed * Time.deltaTime);
+        }
+        
 
     }
     private void OnCollisionEnter2D(Collision2D collision)

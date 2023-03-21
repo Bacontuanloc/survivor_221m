@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: -7739214572859662798}
   - component: {fileID: -8549354945841216822}
   - component: {fileID: 5956266368415962298}
-  - component: {fileID: 2362723667867584629}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Enemy
@@ -143,18 +142,4 @@ MonoBehaviour:
   damage: 7
   bulletSpeed: 10
   fireRate: 1
---- !u!114 &2362723667867584629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2864953563765644657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 750ceafc65d999d4fbf676e8cc7552bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  poolBullet: []
-  bulletPrefab: {fileID: 4108934836306824649, guid: ce6631f33cd03cb48a9fb14d131abc3f, type: 3}
-  poolSize: 10
+  bulletPrefabs: {fileID: 4108934836306824649, guid: ce6631f33cd03cb48a9fb14d131abc3f, type: 3}

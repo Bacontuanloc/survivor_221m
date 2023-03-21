@@ -125,25 +125,28 @@ public class MainBehaviour : MonoBehaviour
         points.Add(DownRight);
         Vector3 UpRight = new Vector3(screenBounds.max.x, screenBounds.max.y, 0);
         points.Add(UpRight);
-
-        if (timer.Finished)
+        GameObject boss = GameObject.FindWithTag("Boss");
+        if (boss == null)
         {
-            //GameObject enemy = ObjectPoolManager.SharedInstance.GetPooledObject();
-            //if(enemy != null)
-            //{
-            //    enemy.SetActive(true);
-            //    enemy.transform.position = getRandomPoint();
-            //}
-            //GameObject enemy = Instantiate(enemyPrefab);
-            GameObject enemy = monsterFactory.Create("normal");
-            enemy.transform.position = getRandomPoint();
-            GameObject fast = monsterFactory.Create("fast");
-            fast.transform.position = getRandomPoint();
-            GameObject tank = monsterFactory.Create("tank");
-            tank.transform.position = getRandomPoint();
+            if (timer.Finished)
+            {
+                //GameObject enemy = ObjectPoolManager.SharedInstance.GetPooledObject();
+                //if(enemy != null)
+                //{
+                //    enemy.SetActive(true);
+                //    enemy.transform.position = getRandomPoint();
+                //}
+                //GameObject enemy = Instantiate(enemyPrefab);
+                GameObject enemy = monsterFactory.Create("normal");
+                enemy.transform.position = getRandomPoint();
+                GameObject fast = monsterFactory.Create("fast");
+                fast.transform.position = getRandomPoint();
+                GameObject tank = monsterFactory.Create("tank");
+                tank.transform.position = getRandomPoint();
 
-            timer.Duration = duration;
-            timer.Run();
+                timer.Duration = duration;
+                timer.Run();
+            }
         }
     }
     void SummonBoss()

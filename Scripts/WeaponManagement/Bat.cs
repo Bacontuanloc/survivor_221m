@@ -80,7 +80,7 @@ namespace Assets.Scripts.WeaponManagement
                     }
                 }
                 Debug.Log("count : "+count);
-                if (count % 10 == 0)
+                if (count % 20 == 0)
                 {
                     Debug.Log("Create Bomb");
                     GameObject item =itemFactory.Create("bomb");
@@ -93,10 +93,8 @@ namespace Assets.Scripts.WeaponManagement
                 boss.health = boss.health - damage;
                 if (boss.health <= 0)
                 {
-                    count++;
-                    scoreNum += 1;
+
                     Destroy(collision.gameObject);
-                    enemiesDestroyedText.text = "Enemy Destroyed" + scoreNum;
                 }
             }
         }

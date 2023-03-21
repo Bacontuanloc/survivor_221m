@@ -11,10 +11,12 @@ public class Ammo : MonoBehaviour
     private Bounds screenBounds;
     private WeaponFactory weaponFactory;
     public Observable<bool> UpdateScore = new Observable<bool>();
+    public int count = 1;
+    private ItemFactory itemFactory;
     // Start is called before the first frame update
     void Start()
     {
-
+        itemFactory = gameObject.AddComponent<ItemFactory>();
     }
 
     // Update is called once per frame
@@ -67,6 +69,12 @@ public class Ammo : MonoBehaviour
                     UpdateScore.Notify(true);
                 }
                 this.gameObject.SetActive(false);
+            }
+            if (count % 20 == 0)
+            {
+                Debug.Log("Create Bomb");
+                GameObject item = itemFactory.Create("bomb");
+                item.transform.position = collision.gameObject.transform.position;
             }
         }
         if (collision.gameObject.CompareTag("Boss") && gameObject.CompareTag("Bullet"))
