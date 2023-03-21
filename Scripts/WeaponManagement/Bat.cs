@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using static UnityEditor.IMGUI.Controls.PrimitiveBoundsHandle;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.WeaponManagement
 {
@@ -19,9 +20,18 @@ namespace Assets.Scripts.WeaponManagement
         public float damage;
         public int count=1;
         private ItemFactory itemFactory;
+
+            
+
+        public Text enemiesDestroyedText;
+        public int scoreNum;
+
         void Start()
         {
             itemFactory=gameObject.AddComponent<ItemFactory>();
+            scoreNum = 0;
+            enemiesDestroyedText = GameObject.FindWithTag("Mytext").GetComponent<Text>();     
+
         }
         // Update is called once per frame
         void Update()
@@ -47,7 +57,9 @@ namespace Assets.Scripts.WeaponManagement
                     if (monster.health < 0)
                     {
                         count++;
+                        scoreNum+=1;
                         Destroy(collision.gameObject);
+                        enemiesDestroyedText.text = "Enemy Destroyed" + scoreNum;
                     }
                 }
                 else if (creep is FastMonster)
@@ -57,7 +69,9 @@ namespace Assets.Scripts.WeaponManagement
                     if (fastMonster.health < 0)
                     {
                         count++;
+                        scoreNum += 1;
                         Destroy(collision.gameObject);
+                        enemiesDestroyedText.text = "Enemy Destroyed" + scoreNum;
                     }
                 }
                 else
@@ -67,7 +81,9 @@ namespace Assets.Scripts.WeaponManagement
                     if (tankMonster.health < 0)
                     {
                         count++;
+                        scoreNum+= 1;
                         Destroy(collision.gameObject);
+                        enemiesDestroyedText.text = "Enemy Destroyed: " + scoreNum;
                     }
                 }
                 Debug.Log("count : "+count);

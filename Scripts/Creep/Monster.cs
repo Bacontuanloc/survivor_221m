@@ -2,6 +2,7 @@ using Assets.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Mime;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -14,6 +15,7 @@ public class Monster : Creep
     public float damage;
     public float bulletSpeed;
     public float fireRate;
+    
 
 
     // Start is called before the first frame update
@@ -46,8 +48,7 @@ public class Monster : Creep
     protected void MoveToMC()
     {
         GameObject mc = GameObject.FindWithTag("MC");
-        gameObject.transform.position = Vector3.MoveTowards(transform.position, mc.transform.position, speed * Time.deltaTime);
-        
+        gameObject.transform.position = Vector3.MoveTowards(transform.position, mc.transform.position, speed * Time.deltaTime);       
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -56,7 +57,7 @@ public class Monster : Creep
         {
             if (health < 0)
             {
-                Destroy(gameObject);
+                Destroy(gameObject);   
             }
             health = health - 10;
             ChangeState(new CreepOnHitState(this));
