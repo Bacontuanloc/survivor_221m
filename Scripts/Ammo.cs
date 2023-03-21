@@ -69,6 +69,16 @@ public class Ammo : MonoBehaviour
                 this.gameObject.SetActive(false);
             }
         }
+        if (collision.gameObject.CompareTag("Boss") && gameObject.CompareTag("Bullet"))
+        {
+            Boss boss = collision.gameObject.GetComponent<Boss>();
+            boss.health = boss.health - damage;
+            if (boss.health <= 0)
+            {
+                Destroy(collision.gameObject);
+            }
+            this.gameObject.SetActive(false);
+        }
         //Xu ly va cham giua bullet cua boss vs character
         if (collision.gameObject.CompareTag("MC") && gameObject.CompareTag("BossBullet"))
         {

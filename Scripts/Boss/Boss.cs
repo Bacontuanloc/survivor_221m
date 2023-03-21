@@ -6,7 +6,7 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
     private int level;
-    private float health;
+    public float health;
     public float damage;
     private float detectionRadius = 10f;
 
