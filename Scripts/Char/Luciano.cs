@@ -10,6 +10,9 @@ namespace Assets.Scripts.Char
     public class Luciano : Character
     {
         private CharacterState currentState;
+        public int currentHealth;
+        public GameObject healthBar;
+
         public Luciano()
         {
             speed = 5f;
@@ -19,8 +22,16 @@ namespace Assets.Scripts.Char
 
         private void Start()
         {
-            currentState = new NormalState(this);
+            {
+                currentHealth = health;
+                healthBar = GameObject.FindWithTag("HealthBar");
+                healthBar.GetComponent<HealthBar>().SetMaxHealth(health);
+                healthBar.GetComponent<HealthBar>().SetHealth(health);
+                currentState = new NormalState(this);
+
+            }
         }
+
         private void Update()
         {
             float horizontalInput = Input.GetAxis("Horizontal");
@@ -58,9 +69,9 @@ namespace Assets.Scripts.Char
         {
             if (collision.gameObject.CompareTag("Enemy"))
             {
-                Creep monster = collision.gameObject.GetComponent<Monster>();
-                //health -= monster.damage;
-                //ChangeState(new OnHitState());
+                Debug.Log(currentHealth);
+                healthBar = GameObject.FindWithTag("HealthBar");
+                healthBar.GetComponent<HealthBar>().TakeDamage(5);
             }
         }
 

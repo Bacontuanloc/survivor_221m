@@ -10,11 +10,9 @@ namespace Assets.Scripts.Char
     public class Geran : Character
     {
         private CharacterState currentState;
-
-        //public int maxHealth = 100;
         public int currentHealth;
-
         public GameObject healthBar;
+
         public Geran() {
             speed = 3f;
             health = 50;
@@ -24,8 +22,8 @@ namespace Assets.Scripts.Char
         {    
             currentHealth = health;
             healthBar = GameObject.FindWithTag("HealthBar");
-            healthBar.AddComponent<HealthBar>().SetMaxHealth(health);
-            // healthBar.SetMaxHealth(health);
+            healthBar.GetComponent<HealthBar>().SetMaxHealth(health);
+            healthBar.GetComponent<HealthBar>().SetHealth(health);
             currentState = new NormalState(this);
         }
         private void Update()
@@ -42,9 +40,7 @@ namespace Assets.Scripts.Char
                 Quaternion toRoation = Quaternion.LookRotation(Vector3.forward, movementDirection);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, toRoation, rotateSpeed * Time.deltaTime);
             }
-            currentState.UpdateState(this);
-            TakeDamage();
-            
+            currentState.UpdateState(this);          
         }
 
         public override void ChangeState(CharacterState newState)
@@ -67,22 +63,15 @@ namespace Assets.Scripts.Char
         {
             if (collision.gameObject.CompareTag("Enemy"))
             {
-               // Creep monster = collision.gameObject.GetComponent<Monster>();
-                //health -= monster.damage;
-                //ChangeState(new OnHitState());
-                currentHealth = currentHealth - 10;
                 Debug.Log(currentHealth);
-                healthBar.AddComponent<HealthBar>().SetHealth(currentHealth);
+                healthBar = GameObject.FindWithTag("HealthBar");
+                healthBar.GetComponent<HealthBar>().TakeDamage(5);
             }
         }
 
-
-
         public override void TakeDamage()
         {
-            currentHealth = currentHealth - 10;
-            Debug.Log(currentHealth);
-            healthBar.AddComponent<HealthBar>().SetHealth(currentHealth);
+            throw new NotImplementedException();
         }
     }
 }

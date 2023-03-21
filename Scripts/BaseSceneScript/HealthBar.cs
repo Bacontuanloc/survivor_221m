@@ -19,4 +19,9 @@ public class HealthBar : MonoBehaviour
        healthSlider.value= health;
     }
 
+    public void TakeDamage(int damage)
+    {
+        healthSlider.value -=damage ;
+    }
+
 }

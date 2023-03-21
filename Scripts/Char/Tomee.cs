@@ -10,13 +10,21 @@ namespace Assets.Scripts.Char
     public class Tomee : Character
     {
         private CharacterState currentState;
-        public Tomee() {
+        public int currentHealth;
+        public GameObject healthBar;
+
+        public Tomee()
+        {
             speed = 10f;
             health = 20;
             rotateSpeed = 8000f;
         }
         private void Start()
         {
+            currentHealth = health;
+            healthBar = GameObject.FindWithTag("HealthBar");
+            healthBar.GetComponent<HealthBar>().SetMaxHealth(health);
+            healthBar.GetComponent<HealthBar>().SetHealth(health);
             currentState = new NormalState(this);
         }
         private void Update()
@@ -56,9 +64,9 @@ namespace Assets.Scripts.Char
         {
             if (collision.gameObject.CompareTag("Enemy"))
             {
-                Creep monster = collision.gameObject.GetComponent<Monster>();
-                //health -= monster.damage;
-                //ChangeState(new OnHitState());
+                Debug.Log(currentHealth);
+                healthBar = GameObject.FindWithTag("HealthBar");
+                healthBar.GetComponent<HealthBar>().TakeDamage(5);
             }
         }
 
