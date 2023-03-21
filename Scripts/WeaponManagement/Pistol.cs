@@ -15,8 +15,12 @@ namespace Assets.Scripts.WeaponManagement
         public float bulletSpeed;
         public float fireRate;
         public float damage;
+        public int count = 1;
+        private ItemFactory itemFactory;
+
         void Start()
         {
+            itemFactory = gameObject.AddComponent<ItemFactory>();
             InvokeRepeating("Attack", 0f, fireRate);
         }
 
@@ -51,15 +55,18 @@ namespace Assets.Scripts.WeaponManagement
         }
         public void OnCollisionEnter2D(Collision2D collision)
         {
+
             if (collision.gameObject.CompareTag("Enemy"))
             {
                 Creep creep = collision.gameObject.GetComponent<Creep>();
+
                 if (creep is Monster)
                 {
                     Monster monster = creep as Monster;
                     monster.health = monster.health - damage;
                     if (monster.health < 0)
                     {
+                        count++;
                         Destroy(collision.gameObject);
                     }
                 }
@@ -69,6 +76,7 @@ namespace Assets.Scripts.WeaponManagement
                     fastMonster.health = fastMonster.health - damage;
                     if (fastMonster.health < 0)
                     {
+                        count++;
                         Destroy(collision.gameObject);
                     }
                 }
@@ -78,8 +86,16 @@ namespace Assets.Scripts.WeaponManagement
                     tankMonster.health = tankMonster.health - damage;
                     if (tankMonster.health < 0)
                     {
+                        count++;
                         Destroy(collision.gameObject);
                     }
+                }
+                Debug.Log("count : " + count);
+                if (count % 10 == 0)
+                {
+                    Debug.Log("Create Bomb");
+                    GameObject item = itemFactory.Create("bomb");
+                    item.transform.position = collision.gameObject.transform.position;
                 }
             }
         }

@@ -9,6 +9,7 @@ public abstract class Character : MonoBehaviour
     private MovementJoystick movementJoystick;
     public float speed;
     public float health;
+    public float current_health;
     public float rotateSpeed;
 
 

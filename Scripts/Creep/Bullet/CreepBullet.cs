@@ -7,10 +7,13 @@ public class CreepBullet : MonoBehaviour
 {
     private int damage = 5;
     public Vector3 Destination { get; set; }
+    public Timer timer;
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, 3);
+        timer=gameObject.AddComponent<Timer>();
+        timer.Duration = 1.5f;
+        timer.Run();
     }
 
     // Update is called once per frame
@@ -27,6 +30,11 @@ public class CreepBullet : MonoBehaviour
             {
                 transform.Translate((Destination - transform.position) * Time.deltaTime * 2);
             }
+        }
+        if(timer.Finished)
+        {
+            Debug.Log("Disable");
+            this.gameObject.SetActive(false);
         }
     }
 
