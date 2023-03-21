@@ -83,7 +83,7 @@ public class MainBehaviour : MonoBehaviour
         timer = gameObject.AddComponent<Timer>();
         timer.Duration = duration;
         timer.Run();
-        //InvokeRepeating("SummonBoss", 0f, 120f);
+        //Invoke("SummonBoss",10f);
     }
 
     void registerObserverEnemyKill(string pickedCharacter)
@@ -154,7 +154,7 @@ public class MainBehaviour : MonoBehaviour
         GameObject boss = Instantiate(BossPrefab);
         Vector3 bossSpawnLocation = Vector3.zero;
         bossSpawnLocation.x = character.transform.position.x;
-        bossSpawnLocation.y = character.transform.position.y;
+        bossSpawnLocation.y = character.transform.position.y+5;
         boss.transform.position = bossSpawnLocation;
         GameObject[] monster = GameObject.FindGameObjectsWithTag("Enemy");
         foreach(GameObject m in monster)
