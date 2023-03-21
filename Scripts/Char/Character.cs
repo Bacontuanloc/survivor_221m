@@ -11,12 +11,18 @@ public abstract class Character : MonoBehaviour
     public float health;
     public float current_health;
     public float rotateSpeed;
+    public float currentHealth;
+    public HealthBar healthBar;
 
 
     private void Start()
     {
-        currentState = new NormalState(this);
+        currentHealth = health;
+        healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
+        healthBar.SetMaxHealth(health);
+        healthBar.SetHealth(health);
         movementJoystick = GameObject.FindWithTag("Joystick").GetComponent<MovementJoystick>();
+        currentState = new NormalState(this);
     }
     private void FixedUpdate()
     {
@@ -54,6 +60,7 @@ public abstract class Character : MonoBehaviour
         currentState = newState;
         currentState.EnterState(this);
     }
+
     public abstract void TakeDamage(int damageAmount);
     public abstract void OnCollisionEnter2D(Collision2D collision);
 

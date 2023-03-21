@@ -46,8 +46,8 @@ public class TankMonster : Creep
         if (collision.gameObject.CompareTag("MC"))
         {
             //Destroy(gameObject);
-            Character character = collision.gameObject.GetComponent<Character>();
-            character.health = character.health - health;
+            //Character character = collision.gameObject.GetComponent<Character>();
+            //character.health = character.health - health;
         }
 
     }
