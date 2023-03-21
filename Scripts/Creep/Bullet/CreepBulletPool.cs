@@ -5,7 +5,7 @@ using UnityEngine;
 public class CreepBulletPool : MonoBehaviour
 {
     public static CreepBulletPool SharedInstance;
-    public List<GameObject> poolBullet;
+    public static List<GameObject> poolBullet;
     public GameObject bulletPrefab;
     public int poolSize;
 
@@ -36,9 +36,7 @@ public class CreepBulletPool : MonoBehaviour
                 return poolBullet[i];
             }
         }
-        GameObject bullet = Instantiate(bulletPrefab);
-        poolBullet.Add(bullet);
-        return bullet;
+        return null;
     }
 
 

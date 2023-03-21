@@ -390,6 +390,9 @@ MonoBehaviour:
   characterFactory: {fileID: 0}
   weaponFactory: {fileID: 0}
   BossPrefab: {fileID: 2053798092552983656, guid: 8b6e2f60cc8621d41b01ddf35f135963, type: 3}
+  enemiesDestroyedText: {fileID: 0}
+  batWeapon: {fileID: 0}
+  score: {fileID: 0}
 --- !u!114 &519420035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,9 +618,10 @@ GameObject:
   - component: {fileID: 639416595}
   - component: {fileID: 639416594}
   - component: {fileID: 639416593}
+  - component: {fileID: 639416596}
   m_Layer: 0
-  m_Name: Mytext
-  m_TagString: Mytext
+  m_Name: Score
+  m_TagString: Score
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -684,6 +688,20 @@ RectTransform:
   m_AnchoredPosition: {x: -43.691727, y: 167.69775}
   m_SizeDelta: {x: 143.0796, y: 66.1062}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &639416596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639416592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2a4a9f17102f6641bb1283ecad6f1bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreNum: 0
+  enemiesDestroyedText: {fileID: 0}
 --- !u!1 &802607759
 GameObject:
   m_ObjectHideFlags: 0

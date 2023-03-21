@@ -1,6 +1,5 @@
 using Assets.Scripts.Char;
 using Assets.Scripts.WeaponManagement;
-using Assets.Scripts.Weapons.Factory;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,10 +10,13 @@ public class Ammo : MonoBehaviour
     public int damage = 5;
     private Bounds screenBounds;
     private WeaponFactory weaponFactory;
+    public Observable<bool> UpdateScore = new Observable<bool>();
+    public int count = 1;
+    private ItemFactory itemFactory;
     // Start is called before the first frame update
     void Start()
     {
-
+        itemFactory = gameObject.AddComponent<ItemFactory>();
     }
 
     // Update is called once per frame
@@ -42,6 +44,7 @@ public class Ammo : MonoBehaviour
                 if (monster.health <= 0)
                 {
                     Destroy(collision.gameObject);
+                    UpdateScore.Notify(true);
                 }
                 this.gameObject.SetActive(false);
             }
@@ -52,6 +55,7 @@ public class Ammo : MonoBehaviour
                 if (fastMonster.health <= 0)
                 {
                     Destroy(collision.gameObject);
+                    UpdateScore.Notify(true);
                 }
                 this.gameObject.SetActive(false);
             }
@@ -62,9 +66,26 @@ public class Ammo : MonoBehaviour
                 if (tankMonster.health <= 0)
                 {
                     Destroy(collision.gameObject);
+                    UpdateScore.Notify(true);
                 }
                 this.gameObject.SetActive(false);
             }
+            if (count % 20 == 0)
+            {
+                Debug.Log("Create Bomb");
+                GameObject item = itemFactory.Create("bomb");
+                item.transform.position = collision.gameObject.transform.position;
+            }
+        }
+        if (collision.gameObject.CompareTag("Boss") && gameObject.CompareTag("Bullet"))
+        {
+            Boss boss = collision.gameObject.GetComponent<Boss>();
+            boss.health = boss.health - damage;
+            if (boss.health <= 0)
+            {
+                Destroy(collision.gameObject);
+            }
+            this.gameObject.SetActive(false);
         }
         //Xu ly va cham giua bullet cua boss vs character
         if (collision.gameObject.CompareTag("MC") && gameObject.CompareTag("BossBullet"))

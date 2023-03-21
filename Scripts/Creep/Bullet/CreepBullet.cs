@@ -7,13 +7,11 @@ public class CreepBullet : MonoBehaviour
 {
     private int damage = 5;
     public Vector3 Destination { get; set; }
-    public Timer timer;
     // Start is called before the first frame update
     void Start()
     {
-        timer=gameObject.AddComponent<Timer>();
-        timer.Duration = 1.5f;
-        timer.Run();
+
+        Destroy(gameObject,1.5f);
     }
 
     // Update is called once per frame
@@ -31,11 +29,7 @@ public class CreepBullet : MonoBehaviour
                 transform.Translate((Destination - transform.position) * Time.deltaTime * 2);
             }
         }
-        if(timer.Finished)
-        {
-            Debug.Log("Disable");
-            this.gameObject.SetActive(false);
-        }
+
     }
 
     private void Explode()
@@ -49,7 +43,7 @@ public class CreepBullet : MonoBehaviour
                     GameObject.FindGameObjectWithTag("MC").GetComponent<Character>().TakeDamage(15);
                 }
             }
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 
@@ -64,12 +58,11 @@ public class CreepBullet : MonoBehaviour
 
                 if (character.health <= 0) 
                 {
-                    //FIXME
-                    //Destroy(monster);
+                    Destroy(character);
                 }
             }
-            this.gameObject.SetActive(false);
-            
+            Destroy(gameObject);
+
         }
     }
 }

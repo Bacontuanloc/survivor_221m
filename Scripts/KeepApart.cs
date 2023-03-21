@@ -38,7 +38,6 @@ public class KeepApart : MonoBehaviour
         }
     void Update()
     {
-        Debug.Log("Enemy");
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Enemy");
         if (gameObjects.Length > 0)
         {

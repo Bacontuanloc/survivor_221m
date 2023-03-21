@@ -7,7 +7,9 @@ using UnityEngine.TextCore.Text;
 public class Boss : MonoBehaviour
 {
 
+
     public float level=1;
+
     public float health;
     public float damage;
     private float detectionRadius = 10f;

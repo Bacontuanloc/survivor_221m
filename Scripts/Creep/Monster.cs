@@ -15,7 +15,8 @@ public class Monster : Creep
     public float damage;
     public float bulletSpeed;
     public float fireRate;
-    
+    public GameObject bulletPrefabs;
+
 
 
     // Start is called before the first frame update
@@ -40,32 +41,26 @@ public class Monster : Creep
     {
         GameObject target = GameObject.FindWithTag("MC");
         //gameObject.transform.position = Vector3.MoveTowards(transform.position, mc.transform.position, speed * Time.deltaTime);
-        GameObject cannonball = CreepBulletPool.SharedInstance.GetPooledObject();
+        GameObject cannonball = Instantiate(bulletPrefabs);
             if (cannonball != null)
             {
                 cannonball.transform.position = gameObject.transform.position;
                 cannonball.GetComponent<CreepBullet>().Destination = target.transform.position;;
-                cannonball.SetActive(true);
             }
     }
 
     protected void MoveToMC()
     {
         GameObject mc = GameObject.FindWithTag("MC");
-        gameObject.transform.position = Vector3.MoveTowards(transform.position, mc.transform.position, speed * Time.deltaTime);       
+        if (mc != null)
+        {
+            gameObject.transform.position = Vector3.MoveTowards(transform.position, mc.transform.position, speed * Time.deltaTime);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Bullet"))
-        {
-            if (health < 0)
-            {
-                Destroy(gameObject);   
-            }
-            health = health - 10;
-            ChangeState(new CreepOnHitState(this));
-        }
+
     }
 
     public override void ChangeState(CreepState newState)

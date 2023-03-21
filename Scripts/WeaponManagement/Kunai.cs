@@ -16,14 +16,11 @@ namespace Assets.Scripts.WeaponManagement
         public float damage;
         public int count = 1;
         private ItemFactory itemFactory;
-        public Text enemiesDestroyedText;
-        public int scoreNum;
+        public Observable<bool> UpdateScore = new Observable<bool>();
 
 
         void Start()
         {
-            scoreNum = 0;
-            enemiesDestroyedText = GameObject.FindWithTag("Mytext").GetComponent<Text>();
             InvokeRepeating("Attack", 0f, fireRate);
             itemFactory = gameObject.AddComponent<ItemFactory>();
         }
