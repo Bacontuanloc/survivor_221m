@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 801114998729610003}
   - component: {fileID: 1906150367404454058}
   - component: {fileID: 825741620002556246}
+  - component: {fileID: 9205062153219145816}
   m_Layer: 0
   m_Name: Freeze
   m_TagString: Untagged
@@ -123,3 +124,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.16
+--- !u!114 &9205062153219145816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5305430543860785601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ca1eac83719fd4493d54af0196cc44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

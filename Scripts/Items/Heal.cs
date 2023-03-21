@@ -18,6 +18,7 @@ public class Heal : Item
             {
                 mc.GetComponent<Character>().current_health = mc.GetComponent<Character>().current_health + mc.GetComponent<Character>().health * 0.2f;
             }
+            Destroy(gameObject);
 
         }
     }

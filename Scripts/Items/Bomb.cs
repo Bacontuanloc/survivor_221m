@@ -13,6 +13,7 @@ public class Bomb : Item
             GameObject[] creeps = GameObject.FindGameObjectsWithTag("Enemy");
            foreach(GameObject go in creeps)
             {
+                Debug.Log("Destroy all");
                 Destroy(go);
             }
             Destroy(gameObject);
