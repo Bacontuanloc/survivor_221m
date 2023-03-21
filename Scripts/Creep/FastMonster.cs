@@ -36,12 +36,7 @@ public class FastMonster : Creep
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("MC"))
-        {
-            //Destroy(gameObject);
-            Character character = collision.gameObject.GetComponent<Character>();
-            character.health=character.health-health;
-        }
+
     }
 
     public override void ChangeState(CreepState newState)
