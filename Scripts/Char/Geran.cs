@@ -30,7 +30,9 @@ namespace Assets.Scripts.Char
                     health -= monster.damage;
                     if (health <= 0)
                     {
+                        //gameObject.GetComponent<CreepBulletPool>().poolBullet = new List<GameObject>();
                         Destroy(gameObject);
+                        
                     }
                     healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
                     healthBar.TakeDamage(monster.damage);
@@ -68,6 +70,15 @@ namespace Assets.Scripts.Char
                 }
                 healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
                 healthBar.TakeDamage(boss.damage);
+            }
+
+            if (collision.gameObject.CompareTag("CreepBullet"))
+            {
+                //health -= monster.damage;
+                //ChangeState(new OnHitState());
+                Debug.Log(currentHealth);
+                healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
+                healthBar.TakeDamage(5);
             }
         }
 

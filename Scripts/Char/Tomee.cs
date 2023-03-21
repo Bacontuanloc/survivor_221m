@@ -67,6 +67,14 @@ namespace Assets.Scripts.Char
                 healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
                 healthBar.TakeDamage(boss.damage);
             }
+            if (collision.gameObject.CompareTag("CreepBullet"))
+            {
+                //health -= monster.damage;
+                //ChangeState(new OnHitState());
+                Debug.Log(currentHealth);
+                healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
+                healthBar.TakeDamage(5);
+            }
         }
 
         public override void TakeDamage(int damageAmount)
