@@ -19,7 +19,7 @@ public class Score : MonoBehaviour
         if (hit)
         {
             scoreNum += 1;
-            enemiesDestroyedText.text = "Enemy: " + scoreNum;
+            enemiesDestroyedText.text = "Score: " + scoreNum;
         }
     }
     // Update is called once per frame

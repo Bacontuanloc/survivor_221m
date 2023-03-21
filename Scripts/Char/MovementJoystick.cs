@@ -16,7 +16,7 @@ namespace Assets.Scripts.Char
         private void Start()
         {
             joystickOriginPos = joystickBG.transform.position;
-            joystickRadius = joystickBG.GetComponent<RectTransform>().sizeDelta.y / 4;
+            joystickRadius = joystickBG.GetComponent<RectTransform>().sizeDelta.y * 2;
         }
 
         public void PointerDown()
