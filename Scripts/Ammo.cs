@@ -13,6 +13,7 @@ public class Ammo : MonoBehaviour
     public Observable<bool> UpdateScore = new Observable<bool>();
     public int count = 1;
     private ItemFactory itemFactory;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -81,7 +82,13 @@ public class Ammo : MonoBehaviour
         if (collision.gameObject.CompareTag("Boss") && gameObject.CompareTag("Bullet"))
         {
             Boss boss = collision.gameObject.GetComponent<Boss>();
-            boss.health = boss.health - damage;
+            weaponFactory = gameObject.AddComponent<WeaponFactory>();
+            GameObject pickedWeapon = weaponFactory.CreateWeapon(MainBehaviour.pickedCharacter);
+            Weapon weapon = pickedWeapon.GetComponent<Weapon>();
+            Pistol pistol = weapon as Pistol;
+            Kunai kunai = weapon as Kunai;
+            float weaponDamage = pistol != null ? pistol.damage : kunai.damage;
+            boss.health = boss.health - weaponDamage;
             if (boss.health <= 0)
             {
                 Destroy(collision.gameObject);
@@ -91,6 +98,7 @@ public class Ammo : MonoBehaviour
         //Xu ly va cham giua bullet cua boss vs character
         if (collision.gameObject.CompareTag("MC") && gameObject.CompareTag("BossBullet"))
         {
+
             Boss boss = GameObject.FindGameObjectWithTag("Boss").GetComponent<Boss>();
             Character character = collision.gameObject.GetComponent<Character>();
             Luciano luciano = character as Luciano;
@@ -98,28 +106,34 @@ public class Ammo : MonoBehaviour
             Tomee tomee = character as Tomee;
             if (luciano != null)
             {
-                luciano.healthBar.TakeDamage(boss.damage); 
+                luciano.healthBar.TakeDamage(boss.damage);
+                luciano.health -= boss.damage;
+                
                 if (luciano.health <= 0)
                 {
-                    Destroy(collision.gameObject);
+                   // Destroy(collision.gameObject);
                 }
                 this.gameObject.SetActive(false);
             }
             else if(geran != null)
             {
                 geran.healthBar.TakeDamage(boss.damage);
+                geran.health -= boss.damage;
+                
                 if (geran.health <= 0)
                 {
-                    Destroy(collision.gameObject);
+                  //  Destroy(collision.gameObject);
                 }
                 this.gameObject.SetActive(false);
             }
             else
             {
                 tomee.healthBar.TakeDamage(boss.damage);
+                tomee.health -= boss.damage;
+                
                 if (tomee.health <= 0)
                 {
-                    Destroy(collision.gameObject);
+                   // Destroy(collision.gameObject);
                 }
                 this.gameObject.SetActive(false);
             }

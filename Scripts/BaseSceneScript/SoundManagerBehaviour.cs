@@ -13,7 +13,7 @@ public class SoundManagerBehaviour : MonoBehaviour
 {
     private AudioSource[] soundList;
 
-    static private SoundManagerBehaviour instance;
+    static public SoundManagerBehaviour instance;
 
     private SoundManagerBehaviour() 
     {
