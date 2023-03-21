@@ -5,7 +5,7 @@ using UnityEngine.TextCore.Text;
 
 public class CreepBullet : MonoBehaviour
 {
-    private int damage = 5;
+    public int damage = 5;
     public Vector3 Destination { get; set; }
     // Start is called before the first frame update
     void Start()

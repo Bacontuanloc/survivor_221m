@@ -12,13 +12,6 @@ namespace Assets.Scripts.Char
     {
         private CharacterState currentState;
        
-
-        public Geran() {
-            speed = 5f;
-            health = 50f;
-            rotateSpeed = 500f;
-        }      
-
         public override void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.CompareTag("Enemy"))
@@ -28,10 +21,11 @@ namespace Assets.Scripts.Char
                 {
                     Monster monster = creep as Monster;
                     health -= monster.damage;
+                    ChangeState(new OnHitState(this));
                     if (health <= 0)
                     {
                         //gameObject.GetComponent<CreepBulletPool>().poolBullet = new List<GameObject>();
-                        Destroy(gameObject);
+                       // Destroy(gameObject);
                         
                     }
                     healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
@@ -41,9 +35,10 @@ namespace Assets.Scripts.Char
                 {
                     FastMonster fastMonster = creep as FastMonster;
                     health -= fastMonster.damage;
+                    ChangeState(new OnHitState(this));
                     if (health <= 0)
                     {
-                        Destroy(gameObject);
+                       // Destroy(gameObject);
                     }
                     healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
                     healthBar.TakeDamage(fastMonster.damage);
@@ -52,9 +47,10 @@ namespace Assets.Scripts.Char
                 {
                     TankMonster tankMonster = creep as TankMonster;
                     health -= tankMonster.damage;
+                    ChangeState(new OnHitState(this));
                     if (health <= 0)
                     {
-                        Destroy(gameObject);
+                       // Destroy(gameObject);
                     }
                     healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
                     healthBar.TakeDamage(tankMonster.damage);
@@ -64,9 +60,10 @@ namespace Assets.Scripts.Char
             {
                 Boss boss = collision.gameObject.GetComponent<Boss>();
                 health -= boss.damage;
+                ChangeState(new OnHitState(this));
                 if (health <= 0)
                 {
-                    Destroy(gameObject);
+                    //Destroy(gameObject);
                 }
                 healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
                 healthBar.TakeDamage(boss.damage);
@@ -74,11 +71,12 @@ namespace Assets.Scripts.Char
 
             if (collision.gameObject.CompareTag("CreepBullet"))
             {
+                CreepBullet creepBullet = collision.gameObject.GetComponent<CreepBullet>();
                 //health -= monster.damage;
-                //ChangeState(new OnHitState());
+                ChangeState(new OnHitState(this));
                 Debug.Log(currentHealth);
                 healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
-                healthBar.TakeDamage(5);
+                healthBar.TakeDamage(creepBullet.damage);
             }
         }
 
