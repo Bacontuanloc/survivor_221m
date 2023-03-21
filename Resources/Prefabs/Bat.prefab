@@ -117,6 +117,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 400
   damage: 40
+  enemiesDestroyedText: {fileID: 0}
+  scoreNum: 0
 --- !u!61 &2734783239574071213
 BoxCollider2D:
   m_ObjectHideFlags: 0
