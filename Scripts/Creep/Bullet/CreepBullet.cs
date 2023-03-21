@@ -64,8 +64,7 @@ public class CreepBullet : MonoBehaviour
 
                 if (character.health <= 0) 
                 {
-                    //FIXME
-                    //Destroy(monster);
+                    Destroy(character);
                 }
             }
             this.gameObject.SetActive(false);

@@ -94,6 +94,18 @@ namespace Assets.Scripts.WeaponManagement
                     item.transform.position=collision.gameObject.transform.position;
                 }
             }
+            if (collision.gameObject.CompareTag("Boss"))
+            {
+                Boss boss = collision.gameObject.GetComponent<Boss>();
+                boss.health = boss.health - damage;
+                if (boss.health <= 0)
+                {
+                    count++;
+                    scoreNum += 1;
+                    Destroy(collision.gameObject);
+                    enemiesDestroyedText.text = "Enemy Destroyed" + scoreNum;
+                }
+            }
         }
         public override void Skill()
         {

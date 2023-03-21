@@ -52,15 +52,7 @@ public class Monster : Creep
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Bullet"))
-        {
-            if (health < 0)
-            {
-                Destroy(gameObject);   
-            }
-            health = health - 10;
-            ChangeState(new CreepOnHitState(this));
-        }
+
     }
 
     public override void ChangeState(CreepState newState)

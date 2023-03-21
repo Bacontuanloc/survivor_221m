@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -22,11 +23,51 @@ namespace Assets.Scripts.Char
         {
             if (collision.gameObject.CompareTag("Enemy"))
             {
-                //health -= monster.damage;
-                //ChangeState(new OnHitState());
-                Debug.Log(currentHealth);
+                Creep creep = collision.gameObject.GetComponent<Creep>();
+                if (creep is Monster)
+                {
+                    Monster monster = creep as Monster;
+                    health -= monster.damage;
+                    if (health <= 0)
+                    {
+                        Destroy(gameObject);
+                    }
+                    healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
+                    healthBar.TakeDamage(monster.damage);
+                }
+                else if (creep is FastMonster)
+                {
+                    FastMonster fastMonster = creep as FastMonster;
+                    health -= fastMonster.damage;
+                    if (health <= 0)
+                    {
+                        Destroy(gameObject);
+                    }
+                    healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
+                    healthBar.TakeDamage(fastMonster.damage);
+                }
+                else
+                {
+                    TankMonster tankMonster = creep as TankMonster;
+                    health -= tankMonster.damage;
+                    if (health <= 0)
+                    {
+                        Destroy(gameObject);
+                    }
+                    healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
+                    healthBar.TakeDamage(tankMonster.damage);
+                }
+            }
+            if (collision.gameObject.CompareTag("Boss"))
+            {
+                Boss boss = collision.gameObject.GetComponent<Boss>();
+                health -= boss.damage;
+                if (health <= 0)
+                {
+                    Destroy(gameObject);
+                }
                 healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();
-                healthBar.TakeDamage(5);
+                healthBar.TakeDamage(boss.damage);
             }
         }
 
