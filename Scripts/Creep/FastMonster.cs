@@ -19,12 +19,17 @@ public class FastMonster : Creep
     {
         health = (float)(health * Math.Pow(1.25, level));
         damage = (float)(damage * Math.Pow(1.25, level));
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        GameObject[] creepBullet = GameObject.FindGameObjectsWithTag("CreepBullet");
+        for (int i = 0; i < creepBullet.Length; i++)
+        {
+            Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), creepBullet[i].GetComponent<Collider2D>());
+        }
         MoveToMC();
     }
 

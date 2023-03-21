@@ -23,6 +23,11 @@ public class TankMonster : Creep
     void Update()
     {
         MoveToMC();
+        GameObject[] creepBullet = GameObject.FindGameObjectsWithTag("CreepBullet");
+        for (int i = 0; i < creepBullet.Length; i++)
+        {
+            Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), creepBullet[i].GetComponent<Collider2D>());
+        }
     }
 
     protected void MoveToMC()

@@ -29,6 +29,11 @@ public class Monster : Creep
     // Update is called once per frame
     void Update()
     {
+        GameObject[] creepBullet = GameObject.FindGameObjectsWithTag("CreepBullet");
+        for (int i = 0; i < creepBullet.Length; i++)
+        {
+            Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), creepBullet[i].GetComponent<Collider2D>());
+        }
         MoveToMC();
     }
     public void Shoot()
