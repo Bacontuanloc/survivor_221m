@@ -21,7 +21,7 @@ namespace Assets.Scripts.WeaponManagement
 
         void Start()
         {
-            InvokeRepeating("Attack", 0f, fireRate);
+            InvokeRepeating("Attack", 1f, fireRate);
             itemFactory = gameObject.AddComponent<ItemFactory>();
         }
 

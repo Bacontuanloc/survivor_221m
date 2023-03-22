@@ -12,18 +12,27 @@ public class Ammo : MonoBehaviour
     private WeaponFactory weaponFactory;
     public Observable<bool> UpdateScore = new Observable<bool>();
     public int count = 1;
+    private Timer timer;
     private ItemFactory itemFactory;
 
     // Start is called before the first frame update
     void Start()
     {
+        timer = gameObject.AddComponent<Timer>();
+        timer.Duration = 1.5f;
+        timer.Run();
         itemFactory = gameObject.AddComponent<ItemFactory>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if(timer.Finished)
+        {
+            gameObject.SetActive(false);
+            timer.Duration = 1.5f;
+            timer.Run();
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
