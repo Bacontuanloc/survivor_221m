@@ -22,6 +22,7 @@ public abstract class Character : MonoBehaviour
         if (pausePanel != null)
         {
             pausePanel.SetActive(false);
+            
         }
         currentHealth = health;
         healthBar = GameObject.FindWithTag("HealthBar").GetComponent<HealthBar>();

@@ -63,6 +63,7 @@ namespace Assets.Scripts.Char
             {
                 Time.timeScale = 0;
                 pausePanel.SetActive(true);
+                SoundManagerBehaviour.GetInstance().StopAll();
                 //gameObject.GetComponent<CreepBulletPool>().poolBullet = new List<GameObject>();
                 // Destroy(gameObject);
             }

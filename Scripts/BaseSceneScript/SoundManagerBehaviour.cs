@@ -24,6 +24,7 @@ public class SoundManagerBehaviour : MonoBehaviour
     {
         if (instance == null)
         {
+            instance= new SoundManagerBehaviour();
             Debug.Log("Need create an instance");
         }
         return instance;
