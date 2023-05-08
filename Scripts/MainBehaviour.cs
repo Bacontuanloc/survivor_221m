@@ -100,12 +100,26 @@ public class MainBehaviour : MonoBehaviour
                         batWeapon.UpdateScore.Subscribe(score.updateScore);
                     }
                     break;
-                default:
+                case "luciano":
+                    Debug.Log("luciano");
+                    
                     Ammo[] ammoList = FindObjectsOfType<Ammo>();
-                    foreach (Ammo ammo in ammoList)
+                   // GameObject[] ammoList = GameObject.FindGameObjectsWithTag("Bullet");
+                    Debug.Log("Luciano "+ammoList.Length);
+                    foreach (var ammo in ammoList)
                     {
                         ammo.UpdateScore.Subscribe(score.updateScore);
                     }
+                    break;
+                case "tomeee":
+                    //Ammo[] ammoList = FindObjectsOfType<Ammo>();
+                    GameObject[] ammoList1 = GameObject.FindGameObjectsWithTag("Bullet");
+                    foreach (var ammo in ammoList1)
+                    {
+                        ammo.GetComponent<Ammo>().UpdateScore.Subscribe(score.updateScore);
+                    }
+                    break;
+                default:
                     break;
             }
         }
@@ -114,6 +128,14 @@ public class MainBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // registerObserverEnemyKill(pickedCharacter);
+        Ammo[] ammoList = FindObjectsOfType<Ammo>();
+        // GameObject[] ammoList = GameObject.FindGameObjectsWithTag("Bullet");
+        Debug.Log("Luciano " + ammoList.Length);
+        foreach (var ammo in ammoList)
+        {
+            ammo.UpdateScore.Subscribe(score.updateScore);
+        }
         screenBounds = OrthographicBounds(Camera.main);
 
         points = new List<Vector3>();

@@ -36,9 +36,10 @@ public class BulletPool : MonoBehaviour
                 return poolBullet[i];
             }
         }
-        GameObject bullet = Instantiate(bulletPrefab);
-        poolBullet.Add(bullet);
-        return bullet;
+        // GameObject bullet = Instantiate(bulletPrefab);
+        // poolBullet.Add(bullet);
+         //return bullet;
+        return null;
     }
 
 

@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolBullet: []
   bulletPrefab: {fileID: 1876171597113210311, guid: 72f70cde7874c7e48bc9823b774ca8aa, type: 3}
-  poolSize: 0
+  poolSize: 5
 --- !u!114 &-5644858947713308131
 MonoBehaviour:
   m_ObjectHideFlags: 0
