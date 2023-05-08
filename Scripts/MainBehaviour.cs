@@ -65,7 +65,6 @@ public class MainBehaviour : MonoBehaviour
         character = characterFactory.Create(pickedCharacter);
         //GameObject weapon = Instantiate(gunPrefab);
         GameObject weapon = weaponFactory.InstantiateWeapon(pickedCharacter);
-        registerObserverEnemyKill(pickedCharacter);
         Physics2D.IgnoreCollision(weapon.GetComponent<Collider2D>(), character.GetComponent<Collider2D>());
 
 
@@ -80,10 +79,13 @@ public class MainBehaviour : MonoBehaviour
         weapon.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0);
         weapon.transform.position = (worldTopLeft + worldTopRight) / 2;
         weapon.transform.parent = character.transform;
+
         timer = gameObject.AddComponent<Timer>();
         timer.Duration = duration;
         timer.Run();
         Invoke("SummonBoss",120f);
+
+
     }
 
     void registerObserverEnemyKill(string pickedCharacter)
@@ -135,6 +137,10 @@ public class MainBehaviour : MonoBehaviour
         foreach (var ammo in ammoList)
         {
             ammo.UpdateScore.Subscribe(score.updateScore);
+    {
+        if (timer.Finished)
+        {
+            registerObserverEnemyKill(pickedCharacter);
         }
         screenBounds = OrthographicBounds(Camera.main);
 
